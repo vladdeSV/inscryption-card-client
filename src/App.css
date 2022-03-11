@@ -1,3 +1,7 @@
+.app {
+  padding: 1rem;
+}
+
 #options > section {
   border: 1px dashed red;
 }
@@ -12,10 +16,23 @@
 
 #generator > section.card-display {
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
 }
 
 #generator > section.card-display > img {
   height: 500px;
+}
+
+#meta {
+  border: 1px dashed blue;
+}
+
+#options > section > p {
+  margin-bottom: 0;
+}
+
+#options > section p {
+  margin: 0.3rem auto;
 }

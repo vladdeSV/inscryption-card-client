@@ -1,11 +1,11 @@
 import React from 'react';
-import NameSelect from '../components/nameSelect';
-import HealthSelect from '../components/healthSelect';
-import PowerSelect from '../components/powerSelect';
-import CardTypeSelect from '../components/cardTypeSelect';
-import TribesSelect from '../components/tribesSelect';
-import CostSelect from '../components/costSelect';
-import SigilSelect from '../components/sigilSelect';
+import Name from './nameSelect';
+import HealthSelect from './healthSelect';
+import PowerSelect from './powerSelect';
+import CardTypeSelect from './cardTypeSelect';
+import TribesSelect from './tribesSelect';
+import CostSelect from './costSelect';
+import SigilSelect from './sigilSelect';
 
 export type Card = {
   type: string,
@@ -34,7 +34,7 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
   render() {
     return (
       <section id='options'>
-        <NameSelect onValueChange={name => this.setState({ name }, () => {
+        <Name onValueChange={name => this.setState({ name }, () => {
           this.props.onCardUpdate(this.state);
           console.log(name);
         })} />
