@@ -96,8 +96,8 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
           </p>
         </section>
         <section>
-          <CardGeneratorMeta onMetaUpdate={(meta) => this.setState({ meta })} />
           <CardGeneratorOptions onCardUpdate={(card) => this.setState({ card })} />
+          <CardGeneratorMeta onMetaUpdate={(meta) => this.setState({ meta })} />
         </section>
       </div>
     );

@@ -6,6 +6,7 @@ import CardTypeSelect from './cardTypeSelect';
 import TribesSelect from './tribesSelect';
 import CostSelect from './costSelect';
 import SigilSelect from './sigilSelect';
+import Section from '../menuSection';
 
 export type Card = {
   type: string,
@@ -32,18 +33,20 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
   }
 
   render() {
+
+    const foo: { title: string, c: any, open?: boolean }[] = [
+      { title: 'Name', c: <Name onValueChange={name => this.setState({ name }, () => this.props.onCardUpdate(this.state))} />, open: true },
+      { title: 'Type', c: <CardTypeSelect onValueChange={type => this.setState({ type }, () => this.props.onCardUpdate(this.state))} /> },
+      { title: 'Health', c: <HealthSelect onValueChange={health => this.setState({ health }, () => this.props.onCardUpdate(this.state))} /> },
+      { title: 'Power', c: <PowerSelect onValueChange={power => this.setState({ power }, () => this.props.onCardUpdate(this.state))} /> },
+      { title: 'Tribes', c: <TribesSelect onValueChange={tribes => this.setState({ tribes }, () => this.props.onCardUpdate(this.state))} /> },
+      { title: 'Cost', c: <CostSelect onValueChange={cost => this.setState({ cost }, () => this.props.onCardUpdate(this.state))} /> },
+      { title: 'Abilities', c: <SigilSelect onValueChange={sigils => this.setState({ sigils }, () => this.props.onCardUpdate(this.state))} /> },
+    ]
+
     return (
       <section id='options'>
-        <Name onValueChange={name => this.setState({ name }, () => {
-          this.props.onCardUpdate(this.state);
-          console.log(name);
-        })} />
-        <CardTypeSelect onValueChange={type => this.setState({ type }, () => this.props.onCardUpdate(this.state))} />
-        <HealthSelect onValueChange={health => this.setState({ health }, () => this.props.onCardUpdate(this.state))} />
-        <PowerSelect onValueChange={power => this.setState({ power }, () => this.props.onCardUpdate(this.state))} />
-        <TribesSelect onValueChange={tribes => this.setState({ tribes }, () => this.props.onCardUpdate(this.state))} />
-        <CostSelect onValueChange={cost => this.setState({ cost }, () => this.props.onCardUpdate(this.state))} />
-        <SigilSelect onValueChange={sigils => this.setState({ sigils }, () => this.props.onCardUpdate(this.state))} />
+        {foo.map((d, index) => (<Section key={index} title={d.title} open={d.open}>{d.c}</Section>))}
       </section>
     );
   }

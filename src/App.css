@@ -1,17 +1,48 @@
-.app {
-  padding: 1rem;
+:root {
+  color-scheme: dark;
 }
 
-#options > section {
-  border: 1px dashed red;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
+
+body {
+  background-color: hsl(213deg, 20%, 18%);
+  color: #eee;
+  font-size: 120%;
+}
+
+body, input {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 100vh;
+}
+
+.app > h1 {
+  font-size: 2.2em;
+  margin: 1.2em 0;
 }
 
 #generator {
   display: flex;
+  background-color: hsl(212deg, 21%, 10%);
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  max-height: 600px;
+  border-radius: 2em 4px 4px 2em;
+  overflow: hidden;
+  box-shadow: 0 0 4em rgba(0,0,0,0.35);
 }
 
 #generator > section {
   flex: 1;
+  overflow: auto;
+  padding: 0 1.5em;
 }
 
 #generator > section.card-display {
@@ -19,20 +50,43 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0,0,0,0.35);
+  box-sizing: border-box;
 }
 
 #generator > section.card-display > img {
-  height: 500px;
+  height: 450px;
+  filter: drop-shadow(0 0 1rem rgba(150,100,100, 0.3));
 }
 
-#meta {
-  border: 1px dashed blue;
+.menu.dropdown .title {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
 }
 
-#options > section > p {
-  margin-bottom: 0;
+.menu.dropdown .checkbox>input[type='checkbox'] {
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0.5em;
 }
 
-#options > section p {
-  margin: 0.3rem auto;
+.menu.dropdown input {
+  font-size: 1em;
+  margin: auto 1em;
+}
+
+input {
+  padding: 0.2em 0.5em;
+}
+
+input[type="number"] {
+  width: 1.9em;
+}
+
+label.checkbox {
+  padding: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
 }

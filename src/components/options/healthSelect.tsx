@@ -7,12 +7,5 @@ export default class HealthSelect extends React.Component<{ onValueChange: (valu
     this.state = { type: 'power' }
   }
 
-  render() {
-    return (
-      <section>
-        <p>health</p>
-        <input type='number' defaultValue={1} onChange={(e) => this.props.onValueChange(Number(e.target.value))} />
-      </section>
-    )
-  }
+  render = () => <input type='number' size={2} defaultValue={1} onChange={(e) => this.props.onValueChange(Number(e.target.value))} />
 }

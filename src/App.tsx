@@ -6,6 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <main className='app'>
+        <h1>Inscryption card generator</h1>
         <CardGenerator />
       </main>
     );
