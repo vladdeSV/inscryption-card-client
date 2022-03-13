@@ -121,9 +121,43 @@ input[type="text"] {
   box-sizing: border-box;
 }
 
-/* .menu label > label.checkbox {
-  padding: 0;
+.info-circle {
+  z-index: 1;
+  font-weight: lighter;
+  transition: 0.2s;
+  position: relative;
+  padding: 0 0.3em;
+  opacity: 0.5;
 }
-.menu label > label.checkbox > input[type="checkbox"]{
-  margin: 0 0.5em 0 1em;
-} */
+
+.info-circle:hover {
+  opacity: 1;
+}
+
+.info-circle > .info {
+  transition: 0.1s;
+  
+  background-color: antiquewhite;
+  color: #111;
+
+  font-size: 0.6em;
+  font-weight: 600;
+  width: 200px;
+  
+  display: block;
+  position: absolute;
+  top: -0.3em;
+  left: 100%;
+  padding: 0.8em;
+  border-radius: 0.2em;
+  
+  transition-timing-function: ease-in-out;
+  transform-origin: 0 0.4em;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.info-circle:hover > .info {
+  transform: scale(1);
+  opacity: 1;
+}

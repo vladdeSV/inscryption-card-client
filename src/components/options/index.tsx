@@ -58,9 +58,9 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
   }
 
   render() {
-    const sections: { title: string, element: any }[] = [
+    const sections: { title: string, element: JSX.Element, help?: string }[] = [
       { title: 'Name', element: <Name onValueChange={name => this.setState({ name }, this.onUpdate)} /> },
-      { title: 'Type', element: <CardType onValueChange={(rare, terrain, terrainLayout) => this.setState({ rare, terrain, terrainLayout }, () => this.props.onCardUpdate(this.state))} /> },
+      { title: 'Type', element: <CardType onValueChange={(rare, terrain, terrainLayout) => this.setState({ rare, terrain, terrainLayout }, () => this.props.onCardUpdate(this.state))} />, help: 'Card appearance might be affected in different card styles' },
       { title: 'Health', element: <Health onValueChange={health => this.setState({ health }, this.onUpdate)} /> },
       { title: 'Power', element: <Power onValueChange={(power, staticon) => this.setState({ power, staticon }, this.onUpdate)} /> },
       { title: 'Cost', element: <Cost onValueChange={(blood, bone, energy, gems) => this.setState({ bloodCost: blood, boneCost: bone, energyCost: energy, gemCost: gems }, this.onUpdate)} /> },
@@ -72,7 +72,7 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
 
     return (
       <section id='options'>
-        {sections.map((section, index) => (<Section key={index} title={section.title}>{section.element}</Section>))}
+        {sections.map((section, index) => (<Section key={index} title={section.title} help={section.help}>{section.element}</Section>))}
       </section>
     );
   }

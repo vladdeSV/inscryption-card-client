@@ -26,7 +26,6 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
         </section>
         <section>
           <CardGeneratorOptions onCardUpdate={card => this.setState({ card })} />
-          <br></br>
           <hr />
           <CardGeneratorMeta onMetaUpdate={meta => this.setState({ meta })} />
           <Credits />
