@@ -3,10 +3,12 @@ import CheckboxGroup from '../checkboxGroup'
 import Section from '../menuSection'
 import SelectOptions from '../selectOptions'
 
+export type Locale = 'default' | 'jp' | 'ko' | 'zh-cn' | 'zh-tw'
 export type Meta = {
   act: 'leshy' | 'gbc',
   border: boolean
   scanline: boolean,
+  locale: Locale,
 }
 type Props = { onMetaUpdate: (meta: Meta) => void }
 
@@ -17,15 +19,11 @@ export default class CardGeneratorMeta extends React.Component<Props, Meta> {
       act: 'leshy',
       border: false,
       scanline: false,
+      locale: 'default',
     }
   }
 
   render() {
-
-    const scanlinesEnabled = this.state.act === 'gbc'
-    console.log('scanlien', scanlinesEnabled);
-
-
     return (
       <section id="meta">
         <Section title='Style'>
@@ -35,6 +33,19 @@ export default class CardGeneratorMeta extends React.Component<Props, Meta> {
             options={[
               { value: 'leshy', label: 'Leshy (act 1)' },
               { value: 'gbc', label: 'GBC (act 2)' },
+            ]}
+          />
+        </Section>
+        <Section title='Locale'>
+          <SelectOptions
+            uniqueName='locale'
+            onChange={locale => this.setState({ locale: locale })}
+            options={[
+              { value: 'default', label: 'Default' }, // (en, pt-br, fr, de, it, ru, es, tk)
+              { value: 'jp', label: '日本語' }, // (jp)
+              { value: 'ko', label: '한국어' }, // (ko)
+              { value: 'zh-cn', label: '中国文' }, // (zh-cn)
+              { value: 'zh-tw', label: '中國文' }, // (zh-tw)
             ]}
           />
         </Section>

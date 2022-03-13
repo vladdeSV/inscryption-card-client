@@ -14,6 +14,12 @@ body, input, select {
   font-family: 'Quicksand', sans-serif;
 }
 
+hr {
+  border: none;
+  border-bottom: 1px solid #999;
+  margin-block-start: 1.5em;
+}
+
 #update-image {
   margin: 1rem 0 0 0;
 }
