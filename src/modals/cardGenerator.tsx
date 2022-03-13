@@ -2,11 +2,12 @@ import React from 'react';
 import CardGeneratorMeta, { Meta } from '../components/meta/cardGeneratorMeta';
 import CardGeneratorOptions, { Card } from '../components/options';
 
-export default class CardGenerator extends React.Component<{}, { card: Card, meta: Meta, imageData: string }> {
+export default class CardGenerator extends React.Component<{}, { /* card: Card, */ meta: Meta, imageData: string }> {
 
   constructor(props: {}) {
     super(props)
     this.state = {
+      /*
       card: {
         type: 'common',
         name: undefined,
@@ -21,10 +22,12 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
           terrain: false,
         }
       },
+      */
       imageData: '',
       meta: {
         act: 'leshy',
         border: false,
+        scanline: false,
       }
     }
   }
@@ -33,24 +36,24 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
 
     const data: Record<string, any> = {}
 
-    data.type = card.type
-    data.name = card.name
-    data.health = card.health
-    data.tribes = card.tribes
-    data.sigils = card.sigils
-    data.cost = card.cost
-    data.meta = card.meta
-    data.flags = { terrain: card.meta.terrain }
-    data.flags = { terrain: card.type === 'terrain' }
+    // data.type = card.type
+    // data.name = card.name
+    // data.health = card.health
+    // data.tribes = card.tribes
+    // data.sigils = card.sigils
+    // data.cost = card.cost
+    // data.meta = card.meta
+    // data.flags = { terrain: card.meta.terrain }
+    // data.flags = { terrain: card.type === 'terrain' }
 
-    if (card.power.type === 'staticon') {
-      data.statIcon = card.power.value
-    } else {
-      data.power = card.power.value
-    }
+    // if (card.power.type === 'staticon') {
+    //   data.statIcon = card.power.value
+    // } else {
+    //   data.power = card.power.value
+    // }
 
-    data.border = this.state.meta.border
-    data.locale = card.locale
+    // data.border = this.state.meta.border
+    // data.locale = card.locale
 
     const opts = {
       method: 'POST',
@@ -91,9 +94,17 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
       <div id='generator'>
         <section className='card-display'>
           <img src={this.state.imageData} alt="custom generated card" />
-          <input type='button' id='update-image' value='update' onClick={() => this.updateCardImage(this.state.card)}></input>
+          {/* <input type='button' id='update-image' value='update' onClick={() => this.updateCardImage(this.state.card)}></input> */}
         </section>
-        <CardGeneratorOptions onCardUpdate={(card) => this.setState({ card })} />
+        <section>
+          <CardGeneratorOptions onCardUpdate={(card) => console.log(card) /*this.setState({ card })*/} />
+          <CardGeneratorMeta onMetaUpdate={console.log} />
+          <section id='credits' className='menu'>
+            <p className='title'>Credits</p>
+            <p>original art from <i>Inscryption</i> by Daniel Mullins, redistrubuted with permissions</p>
+            <p>generator made by vladde</p>
+          </section></section>
+
       </div>
     );
   }

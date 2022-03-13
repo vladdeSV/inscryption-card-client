@@ -1,12 +1,19 @@
 import React from 'react';
-import CheckboxGroup from '../checkboxGroup';
 
-type CostData = { type: 'blood' | 'bone', amount: number } | { type: 'gem', gems: ('orange' | 'green' | 'blue')[] }
-type Props = { onValueChange: (value: CostData | undefined) => void }
+type CostData = {
+  bloodCost: number, // 0 - 4
+  boneCost: number, // 0 - 13, 0 - 10
+  energyCost: number, // 0 - 6
+  gemCost: { orange: boolean, green: boolean, blue: boolean },
+}
+type Props = {
+  onValueChange: (bloodCost: number, boneCost: number, energyCost: number, gemCost: { orange: boolean, green: boolean, blue: boolean }) => void
+}
 type State = {
-  selected?: 'blood' | 'bone' | 'gem',
+  selected?: 'blood' | 'bone' | 'energy' | 'gem',
   blood: number,
   bone: number,
+  energy: number,
   gems: ('orange' | 'green' | 'blue')[],
 }
 
@@ -14,24 +21,24 @@ export default class CostSelect extends React.Component<Props, State> {
 
   constructor(props: any) {
     super(props)
-    this.state = { selected: undefined, blood: 1, bone: 1, gems: [] }
+    this.state = { selected: undefined, blood: 1, bone: 1, energy: 0, gems: [] }
   }
 
   private onUpdate() {
-    const data: CostData | undefined = ((state) => {
-      switch (state.selected) {
-        case undefined:
-          return undefined
-        case 'blood':
-          return { type: 'blood', amount: state.blood }
-        case 'bone':
-          return { type: 'bone', amount: state.bone }
-        case 'gem':
-          return { type: 'gem', gems: state.gems }
-      }
-    })(this.state);
+    const gems: CostData['gemCost'] = {
+      orange: this.state.gems.includes('orange'),
+      green: this.state.gems.includes('green'),
+      blue: this.state.gems.includes('blue'),
+    }
 
-    this.props.onValueChange(data)
+    const selected = this.state.selected
+
+    this.props.onValueChange(
+      selected === 'blood' ? this.state.blood : 0,
+      selected === 'bone' ? this.state.bone : 0,
+      selected === 'energy' ? this.state.energy : 0,
+      selected === 'gem' ? gems : { orange: false, green: false, blue: false },
+    )
   }
 
   render() {

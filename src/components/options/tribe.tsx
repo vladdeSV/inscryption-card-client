@@ -1,9 +1,9 @@
 import React from 'react';
 import CheckboxGroup from '../checkboxGroup';
 
-type Tribe = 'bird' | 'canine' | 'hooved' | 'reptile' | 'insect'
+export type Tribe = 'bird' | 'canine' | 'hooved' | 'reptile' | 'insect'
 
-export default class TribesSelect extends React.Component<{ onValueChange: (value: string[]) => void }, { tribes: Record<Tribe, boolean> }> {
+export default class TribesSelect extends React.Component<{ onValueChange: (value: Tribe[]) => void }, { tribes: Record<Tribe, boolean> }> {
 
   constructor(props: any) {
     super(props)

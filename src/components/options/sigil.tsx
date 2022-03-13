@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 export default class SigilSelect extends React.Component<{ onValueChange: (sigils: string[]) => void }, { sigils: [string?, string?, string?] }> {
   constructor(props: any) {
     super(props)

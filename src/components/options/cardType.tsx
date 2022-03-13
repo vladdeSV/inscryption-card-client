@@ -1,27 +1,43 @@
 import React from 'react';
-import CheckboxGroup from '../checkboxGroup';
+import SelectOptions from '../selectOptions';
 
-type Props = { onValueChange: (value: State) => void }
-type State = { type: string, terrain: boolean, rare: boolean, }
+export type CardType = 'common' | 'rare' | 'terrain'
+type Props = { onValueChange: (rare: boolean, terrain: boolean, terrainLayout: boolean) => void }
+type State = { type: 'common' | 'rare' | 'terrain' | 'rareterrain', ignoreTerrainLayout: boolean }
 export default class CardTypeSelect extends React.Component<Props, State> {
 
-  private onUpdate() {
-    this.props.onValueChange(this.state)
+  constructor(props: Props) {
+    super(props)
+    this.state = { type: 'common', ignoreTerrainLayout: false }
   }
 
   render() {
+    const disableTerrainLayoutOption = !this.state.type.includes('terrain')
+
     return (
       <>
-        <select onChange={(e) => this.setState({ type: e.target.value }, this.onUpdate)}>
-          <option value="common">Default</option>
-          <option value="rare">Rare</option>
-          <option value="terrain">Terrain</option>
-        </select>
-        {/* <CheckboxGroup options={[
-          { value: 'terrain', label: 'Terrain' },
-          { value: 'rare', label: 'Rare' },
-        ]} onUpdate={opts => this.setState({ terrain: opts[0].checked, rare: opts[1].checked }, this.onUpdate)} /> */}
+        <SelectOptions
+          uniqueName='cardtype'
+          disabled={false}
+          onChange={value => this.setState({ type: value }, this.onUpdate)}
+          options={[
+            { value: 'common', label: 'Default' },
+            { value: 'rare', label: 'Rare' },
+            { value: 'terrain', label: 'Terrain' },
+            { value: 'rareterrain', label: 'Rare Terrain' },
+          ]}
+        />
+        <label className={disableTerrainLayoutOption ? 'disabled' : ''}>
+          <input type="checkbox" disabled={disableTerrainLayoutOption} checked={this.state.ignoreTerrainLayout && !disableTerrainLayoutOption} onChange={e => this.setState({ ignoreTerrainLayout: e.target.checked }, this.onUpdate)} />
+          Ignore terrain layout
+        </label>
       </>
     )
+  }
+
+  private onUpdate() {
+    const rare = this.state.type.includes('rare')
+    const terrain = this.state.type.includes('terrain')
+    this.props.onValueChange(rare, terrain, !this.state.ignoreTerrainLayout)
   }
 }

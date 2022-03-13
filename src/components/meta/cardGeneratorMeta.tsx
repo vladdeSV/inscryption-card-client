@@ -1,8 +1,12 @@
 import React from 'react'
+import CheckboxGroup from '../checkboxGroup'
+import Section from '../menuSection'
+import SelectOptions from '../selectOptions'
 
 export type Meta = {
-  act: 'leshy' | 'gbc' | string,
+  act: 'leshy' | 'gbc',
   border: boolean
+  scanline: boolean,
 }
 type Props = { onMetaUpdate: (meta: Meta) => void }
 
@@ -12,25 +16,45 @@ export default class CardGeneratorMeta extends React.Component<Props, Meta> {
     this.state = {
       act: 'leshy',
       border: false,
+      scanline: false,
     }
   }
 
   render() {
+
+    const scanlinesEnabled = this.state.act === 'gbc'
+    console.log('scanlien', scanlinesEnabled);
+
+
     return (
       <section id="meta">
-        <p>
-          <select onChange={e => this.setState({ act: e.target.value }, () => this.props.onMetaUpdate(this.state))}>
-            <option value="leshy">Act 1</option>
-            <option value="gbc">Act 2</option>
-          </select>
-        </p>
-        <p>
-          bordered: <input type="checkbox" onChange={e => this.setState({ border: e.target.checked }, () => this.props.onMetaUpdate(this.state))} />
-        </p>
-        <p>
-
-        </p>
-      </section>
+        <Section title='Style'>
+          <SelectOptions
+            uniqueName='act'
+            onChange={value => this.setState({ act: value }, this.onUpdate)}
+            options={[
+              { value: 'leshy', label: 'Leshy (act 1)' },
+              { value: 'gbc', label: 'GBC (act 2)' },
+            ]}
+          />
+        </Section>
+        <Section title='Misc.'>
+          <CheckboxGroup
+            options={[
+              { label: 'Border', value: 'border' },
+              { label: (<span className='gbc'>Scanline</span>), value: 'scanline' }
+            ]}
+            onUpdate={opts => {
+              const selected = opts.filter(opt => opt.checked).map(opt => opt.value)
+              this.setState({ border: selected.includes('border'), scanline: selected.includes('scanline') }, this.onUpdate)
+            }}
+          />
+        </Section>
+      </section >
     )
+  }
+
+  private onUpdate() {
+    this.props.onMetaUpdate(this.state)
   }
 }

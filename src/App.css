@@ -20,6 +20,11 @@ body, input, select {
 
 .gbc {
   font-family: 'Marksman', monospace;
+  font-size: 1.4em;
+}
+
+.disabled {
+  opacity: 0.5;
 }
 
 .app {
@@ -104,6 +109,10 @@ label.checkbox {
 
 .name-selection > input {
   flex: 1;
+}
+
+input[type="text"] {
+  box-sizing: border-box;
 }
 
 /* .menu label > label.checkbox {

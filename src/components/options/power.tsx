@@ -1,13 +1,17 @@
 import React from 'react';
+import SelectOptions from '../selectOptions';
+
+export type StatIcon = 'ants' | 'cardsinhand' | 'mirror' | 'bell'
 
 type Props = {
-  onValueChange: (value: { type: 'power', value: number } | { type: 'staticon', value: string }) => void,
+  onValueChange: (power: number, staticon?: StatIcon | undefined) => void,
 }
 type State = {
   selected: 'power' | 'staticon',
   power: number,
-  staticon: string,
+  staticon: StatIcon,
 }
+
 export default class PowerSelect extends React.Component<Props, State> {
 
   constructor(props: Props) {
@@ -16,10 +20,7 @@ export default class PowerSelect extends React.Component<Props, State> {
   }
 
   private onChange() {
-
-    const value = this.state.selected === 'power' ? { type: 'power' as const, value: this.state.power } : { type: 'staticon' as const, value: this.state.staticon }
-
-    this.props.onValueChange(value)
+    this.props.onValueChange(this.state.power, this.state.selected === 'staticon' ? this.state.staticon : undefined)
   }
 
   render() {
@@ -33,12 +34,17 @@ export default class PowerSelect extends React.Component<Props, State> {
         <p>
           <input type='radio' name='powertype' id="power-staticon" onClick={() => this.setState({ selected: 'staticon' }, this.onChange)} />
           <label htmlFor="power-staticon">Variable Stat</label>
-          <select disabled={this.state.selected !== 'staticon'} onChange={e => this.setState({ staticon: e.target.value }, this.onChange)}>
-            <option value="ants">Ants</option>
-            <option value="bell">Bell Ringer</option>
-            <option value="cardsinhand">Card Counter</option>
-            <option value="mirror">M!rror r0rriM</option>
-          </select>
+          <SelectOptions
+            uniqueName='staticons'
+            disabled={this.state.selected !== 'staticon'}
+            onChange={value => this.setState({ staticon: value }, this.onChange)}
+            options={[
+              { value: 'ants', label: 'Ants' },
+              { value: 'bell', label: 'Bell Ringer' },
+              { value: 'cardsinhand', label: 'Card Counter' },
+              { value: 'mirror', label: 'M!rror r0rriM' },
+            ]}
+          />
         </p>
       </>
     )

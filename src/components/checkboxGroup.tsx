@@ -1,6 +1,10 @@
 import React from 'react'
 
-type Option<T> = { value: T, label: string, checked?: boolean }
+type Option<T> = {
+  value: T,
+  label: string | JSX.Element,
+  checked?: boolean,
+}
 type CheckboxGroupProps<T> = {
   options: Option<T>[],
   onUpdate: (options: Required<Option<T>>[]) => void,
@@ -15,11 +19,11 @@ class CheckboxGroup<T extends string | number> extends React.Component<CheckboxG
     super(props)
 
     // explicit checked
-    const options = props.options.map(o => ({ ...o, checked: !!o.checked }))
+    const options = props.options.map(o => ({ ...o, checked: o.checked ?? false }))
     this.state = { options }
   }
 
-  render = () => <>{this.props.options.map(this.checkbox)}</>
+  render = () => <>{this.state.options.map(this.checkbox)}</>
 
   private updateCheckbox(index: number, checked: boolean) {
     this.setState(
@@ -28,9 +32,9 @@ class CheckboxGroup<T extends string | number> extends React.Component<CheckboxG
     )
   }
 
-  private checkbox = (option: Option<T>, index: number) => (
+  private checkbox = (option: Required<Option<T>>, index: number) => (
     <label key={index} className='checkbox'>
-      <input type="checkbox" defaultChecked={!!option.checked} value={option.value} onChange={e => this.updateCheckbox(index, e.target.checked)} />
+      <input type="checkbox" checked={option.checked} value={option.value} onChange={e => this.updateCheckbox(index, e.target.checked)} />
       {option.label}
     </label>
   )
