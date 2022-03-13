@@ -21,7 +21,7 @@ export default class CostSelect extends React.Component<Props, State> {
 
   constructor(props: any) {
     super(props)
-    this.state = { selected: undefined, blood: 1, bone: 1, energy: 0, gems: [] }
+    this.state = { selected: undefined, blood: 1, bone: 1, energy: 1, gems: [] }
   }
 
   private onUpdate() {
