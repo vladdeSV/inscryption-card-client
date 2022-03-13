@@ -10,16 +10,20 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
       card: {
         type: 'common',
         name: undefined,
+        locale: 'default',
         power: { type: 'power', value: 0 },
         health: 1,
         tribes: [],
         cost: undefined,
         sigils: [],
+        meta: {
+          rare: false,
+          terrain: false,
+        }
       },
       imageData: '',
       meta: {
         act: 'leshy',
-        locale: 'default',
         border: false,
       }
     }
@@ -35,13 +39,9 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
     data.tribes = card.tribes
     data.sigils = card.sigils
     data.cost = card.cost
-
-    const meta = {
-      rare: card.type === 'rare',
-      terrain: card.type === 'terrain',
-    }
-    data.meta = meta
-
+    data.meta = card.meta
+    data.flags = { terrain: card.meta.terrain }
+    data.flags = { terrain: card.type === 'terrain' }
 
     if (card.power.type === 'staticon') {
       data.statIcon = card.power.value
@@ -50,7 +50,7 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
     }
 
     data.border = this.state.meta.border
-    data.locale = this.state.meta.locale
+    data.locale = card.locale
 
     const opts = {
       method: 'POST',
@@ -91,14 +91,9 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
       <div id='generator'>
         <section className='card-display'>
           <img src={this.state.imageData} alt="custom generated card" />
-          <p>
-            <input type='button' value='update' onClick={() => this.updateCardImage(this.state.card)}></input>
-          </p>
+          <input type='button' id='update-image' value='update' onClick={() => this.updateCardImage(this.state.card)}></input>
         </section>
-        <section>
-          <CardGeneratorOptions onCardUpdate={(card) => this.setState({ card })} />
-          <CardGeneratorMeta onMetaUpdate={(meta) => this.setState({ meta })} />
-        </section>
+        <CardGeneratorOptions onCardUpdate={(card) => this.setState({ card })} />
       </div>
     );
   }

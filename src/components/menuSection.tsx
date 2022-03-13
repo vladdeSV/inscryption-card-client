@@ -4,10 +4,10 @@ class MenuSection extends React.Component<{ title: string, open?: boolean }> {
 
   render() {
     return (
-      <details className='menu dropdown' open={this.props.open}>
-        <summary className='title'>{this.props.title}</summary>
+      <section className='menu'>
+        <p className='title'>{this.props.title}</p>
         {this.props.children}
-      </details>
+      </section>
     )
   }
 }

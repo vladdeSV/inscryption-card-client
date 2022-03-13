@@ -10,8 +10,16 @@ body {
   font-size: 120%;
 }
 
-body, input {
+body, input, select {
   font-family: 'Quicksand', sans-serif;
+}
+
+#update-image {
+  margin: 1rem 0 0 0;
+}
+
+.gbc {
+  font-family: 'Marksman', monospace;
 }
 
 .app {
@@ -24,7 +32,7 @@ body, input {
 
 .app > h1 {
   font-size: 2.2em;
-  margin: 1.2em 0;
+  margin: 0 0 1.2em 0;
 }
 
 #generator {
@@ -36,7 +44,7 @@ body, input {
   max-height: 600px;
   border-radius: 2em 4px 4px 2em;
   overflow: hidden;
-  box-shadow: 0 0 4em rgba(0,0,0,0.35);
+  filter: drop-shadow(0 0 2em rgba(0,0,0,0.35));
 }
 
 #generator > section {
@@ -59,29 +67,28 @@ body, input {
   filter: drop-shadow(0 0 1rem rgba(150,100,100, 0.3));
 }
 
-.menu.dropdown .title {
+.menu .title {
   font-size: 1.3em;
   font-weight: bold;
   margin: 1em 0 0.5em 0;
 }
 
-.menu.dropdown .checkbox>input[type='checkbox'] {
-  width: 1.5em;
-  height: 1.5em;
+.menu .checkbox>input {
+  width: 1em;
+  height: 1em;
   margin: 0.5em;
 }
 
-.menu.dropdown input {
+.menu input, .menu select {
   font-size: 1em;
-  margin: auto 1em;
-}
-
-input {
-  padding: 0.2em 0.5em;
+  margin: 0.1em 0.5em;
+  padding: 0.3em 0.5em;
+  border-radius: 0.5em;
+  border: none;
 }
 
 input[type="number"] {
-  width: 1.9em;
+  width: 2em;
 }
 
 label.checkbox {
@@ -90,3 +97,18 @@ label.checkbox {
   align-items: center;
   user-select: none;
 }
+
+.name-selection {
+  display: flex;
+}
+
+.name-selection > input {
+  flex: 1;
+}
+
+/* .menu label > label.checkbox {
+  padding: 0;
+}
+.menu label > label.checkbox > input[type="checkbox"]{
+  margin: 0 0.5em 0 1em;
+} */

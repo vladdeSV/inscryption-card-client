@@ -65,11 +65,11 @@ export default class SigilSelect extends React.Component<{ onValueChange: (sigil
     )
 
     return (
-      <>
-        {sigilSelect(1)}
-        {sigilSelect(2)}
-        {sigilSelect(3)}
-      </>
+      <ol>
+        <li>{sigilSelect(1)}</li>
+        <li>{sigilSelect(2)}</li>
+        {/* {sigilSelect(3)} */}
+      </ol>
     )
   }
 }
