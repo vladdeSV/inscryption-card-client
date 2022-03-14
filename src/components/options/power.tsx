@@ -1,7 +1,7 @@
 import React from 'react';
 import SelectOptions from '../selectOptions';
 
-export type StatIcon = 'ants' | 'cardsinhand' | 'mirror' | 'bell'
+export type StatIcon = 'ants' | 'cardsinhand' | 'mirror' | 'bell' | 'greengems'
 
 type Props = {
   onValueChange: (power: number, staticon?: StatIcon | undefined) => void,
@@ -39,10 +39,11 @@ export default class PowerSelect extends React.Component<Props, State> {
             disabled={this.state.selected !== 'staticon'}
             onChange={value => this.setState({ staticon: value }, this.onChange)}
             options={[
-              { value: 'ants', label: 'Ants' },
               { value: 'bell', label: 'Bell Ringer' },
               { value: 'cardsinhand', label: 'Card Counter' },
               { value: 'mirror', label: 'M!rror r0rriM' },
+              { value: 'ants', label: 'Ants' },
+              { value: 'greengems', label: 'Emerald Power' },
             ]}
           />
         </p>

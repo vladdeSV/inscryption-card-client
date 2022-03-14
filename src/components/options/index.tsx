@@ -13,7 +13,7 @@ export type Card = {
   name: string,
   health: number, // 0 - 9999
   power: number, // 0 - 9999
-  staticon: 'ants' | 'cardsinhand' | 'mirror' | 'bell' | undefined,
+  staticon: 'ants' | 'cardsinhand' | 'mirror' | 'bell' | 'greengems' | undefined,
   tribes: TribeType[], // Tribe[], max length 5
   bloodCost: number, // 0 - 4
   boneCost: number, // 0 - 13, 0 - 10
