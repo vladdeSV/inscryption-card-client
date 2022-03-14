@@ -67,7 +67,6 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
       { title: 'Abilities', element: <Sigil onValueChange={sigils => this.setState({ sigils }, this.onUpdate)} /> },
       { title: 'Tribes', element: <Tribe onValueChange={tribes => this.setState({ tribes }, this.onUpdate)} /> },
       { title: 'Temple', element: <Temple onValueChange={temple => this.setState({ temple }, this.onUpdate)} /> },
-      // { title: 'Meta options', element: <><CheckboxGroup options={[{ label: 'Border', value: 'border' }, { label: 'Scanline', value: 'scanline' }]} onUpdate={console.log} /></> },
     ]
 
     return (
