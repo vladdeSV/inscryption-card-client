@@ -10,7 +10,7 @@ body {
   font-size: 120%;
 }
 
-body, input, select {
+body, input, select, button {
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -75,7 +75,31 @@ hr {
 
 #generator > section.card-display > img {
   height: 450px;
+  padding: 1em;
   filter: drop-shadow(0 0 1rem rgba(150,100,100, 0.3));
+}
+
+#generate-button {
+  transition: 0.4s;
+  padding: 0.3em 0.8em;
+  margin: 0.4em 0;
+  font-size: 1em;
+  background: #fff2;
+  border-radius: 0.5em;
+  border: 1px solid transparent;
+}
+
+#generate-button:hover {
+  background: #fff1;
+  border: 1px solid #ddf1;
+}
+
+#generate-button:active {
+  background: none;
+}
+
+#generate-button.fetching {
+  background: #fff4;
 }
 
 .menu .title {

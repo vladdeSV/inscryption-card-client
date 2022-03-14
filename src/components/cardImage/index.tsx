@@ -7,6 +7,7 @@ type Props = {
   meta: Meta,
 }
 type State = {
+  fetching: boolean,
   data?: string
 }
 
@@ -16,6 +17,7 @@ export default class CardImage extends React.Component<Props, State> {
     super(props)
     this.state = {
       data: undefined,
+      fetching: false,
     }
   }
 
@@ -23,7 +25,7 @@ export default class CardImage extends React.Component<Props, State> {
     return (
       <>
         {this.state.data ? <img src={this.state.data} alt="custom card" /> : undefined}
-        <button onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>does</button>
+        <button id='generate-button' className={this.state.fetching ? 'fetching' : ''} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate</button>
       </>
     )
   }
@@ -51,10 +53,13 @@ export default class CardImage extends React.Component<Props, State> {
       meta.locale ? ('locale=' + meta.locale) : undefined,
     ].filter(x => x)
 
-    fetch(`http://localhost:8080/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`, opts)
-      .then(res => res.blob())
-      .then(blobTo64)
-      .then(data => this.setState({ data }))
+    this.setState({ fetching: true }, () =>
+      fetch(`http://localhost:8080/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`, opts)
+        .then(res => res.blob())
+        .then(blobTo64)
+        .then(data => this.setState({ data }))
+        .finally(() => this.setState({ fetching: false }))
+    )
   }
 
 }
