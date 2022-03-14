@@ -39,7 +39,7 @@ export default class CardGeneratorMeta extends React.Component<Props, Meta> {
         <Section title='Locale' help='For languages with non-latin characters like Korean, Japanses, and Chinese'>
           <SelectOptions
             uniqueName='locale'
-            onChange={locale => this.setState({ locale: locale })}
+            onChange={locale => this.setState({ locale: locale }, this.onUpdate)}
             options={[
               { value: 'default', label: 'Default' }, // (en, pt-br, fr, de, it, ru, es, tk)
               { value: 'jp', label: '日本語' }, // (jp)
