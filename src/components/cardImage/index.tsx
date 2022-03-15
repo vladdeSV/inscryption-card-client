@@ -1,4 +1,5 @@
 import React from "react";
+import { blobTo64 } from "../../helpers";
 import { Meta } from "../meta/cardGeneratorMeta";
 import { Card } from "../options";
 
@@ -35,16 +36,6 @@ export default class CardImage extends React.Component<Props, State> {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(card),
-    }
-
-    async function blobTo64(blob: Blob) {
-      const reader = new FileReader();
-      await new Promise((resolve, reject) => {
-        reader.onload = resolve;
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-      return reader.result as string
     }
 
     const parameters = [
