@@ -9,6 +9,7 @@ import Sigil from './sigil';
 import Section from '../menuSection';
 import Temple from './temple';
 import Portrait from './portrait';
+import Flags from './flags';
 
 export type Card = {
   name: string,
@@ -77,6 +78,7 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
       { title: 'Abilities', element: <Sigil onValueChange={sigils => this.setState({ sigils }, this.onUpdate)} /> },
       { title: 'Tribes', element: <Tribe onValueChange={tribes => this.setState({ tribes }, this.onUpdate)} /> },
       { title: 'Temple', element: <Temple onValueChange={temple => this.setState({ temple }, this.onUpdate)} /> },
+      { title: 'Other', element: <Flags onValueChange={(fused, golden, squid) => this.setState({ fused, golden, squid }, this.onUpdate)} /> },
     ]
 
     return (
