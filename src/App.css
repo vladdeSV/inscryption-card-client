@@ -3,6 +3,10 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
+@font-face {
+  font-family: 'Marksman';
+  src: local('Marksman'), url(/public/Marksman.otf) format('opentype');
+}
 
 body {
   background-color: hsl(213deg, 20%, 18%);
