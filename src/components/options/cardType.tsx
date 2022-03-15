@@ -38,6 +38,7 @@ export default class CardTypeSelect extends React.Component<Props, State> {
   private onUpdate() {
     const rare = this.state.type.includes('rare')
     const terrain = this.state.type.includes('terrain')
-    this.props.onValueChange(rare, terrain, !this.state.ignoreTerrainLayout)
+    const terrainLayout = terrain && !this.state.ignoreTerrainLayout
+    this.props.onValueChange(rare, terrain, terrainLayout)
   }
 }
