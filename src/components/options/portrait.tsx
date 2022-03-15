@@ -20,19 +20,22 @@ export default class Portrait extends React.Component<Props, State> {
   }
 
   render() {
+    const uploadButton = (label: JSX.Element, onChange: (data64: string) => void) => (
+      <label>
+        {label}
+        <input type='file' onChange={
+          e => {
+            const blob = e.target.files?.[0];
+            if (blob) { blobTo64(blob).then(onChange) }
+          }
+        } />
+      </label>
+    )
+
     return (
       <>
-        <label>
-          Common portrait <small>(114×94 px)</small>
-          <input type='file' onChange={
-            e => {
-              const blob = e.target.files?.[0];
-              if (blob) {
-                blobTo64(blob).then(data => this.setState({ common: data }, this.onUpdate))
-              }
-            }
-          } />
-        </label>
+        {uploadButton(<span>Common portrait <small>(114×94 px)</small></span>, (data) => this.setState({ common: data }, this.onUpdate))}
+        {uploadButton(<span>Pixel portrait <small>(41×28 px)</small></span>, (data) => this.setState({ gbc: data }, this.onUpdate))}
       </>
     )
   }
