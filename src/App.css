@@ -94,8 +94,6 @@ button.generate {
   border: 1px solid transparent;
 }
 
-
-
 button.generate:active {
   background: none;
 }
@@ -165,6 +163,59 @@ button.generate.fetching .generate{
 
 input[type="number"] {
   width: 2em;
+}
+
+input[type="file"]  {
+  display: none;
+}
+
+.upload-wrapper {
+  display: flex;
+  flex-flow: column;
+  padding: 0.3em 0;
+}
+
+.upload-section > div {
+  display: inline-flex;
+  max-width: 100%;
+  border-radius: 0.5em;
+  background: #fff2;
+  margin: 0.3em;
+  overflow: hidden;
+}
+
+.upload-section .input,
+.upload-section .close {
+  padding: 0.3em 0.6em;
+  cursor: pointer;
+  transition: 0.2s;
+  transition-timing-function: ease-out;
+  box-sizing: border-box;
+}
+
+.upload-section .input {
+  display: inline-block;
+  font-size: 0.95em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.upload-section .close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid #999;
+  padding-right: 0.7em;
+}
+
+.upload-section .input:hover {
+  background: #fff2;
+}
+
+.upload-section .close:hover {
+  background: #c44;
+  border-left: 1px solid #c44;
+  box-shadow: 0 0 0.5em #a229;
 }
 
 label.checkbox {
