@@ -83,8 +83,9 @@ hr {
   filter: drop-shadow(0 0 1rem rgba(150,100,100, 0.3));
 }
 
-#generate-button {
-  transition: 0.4s;
+button.generate {
+  transition: 0.2s;
+  transition-timing-function: ease-out;
   padding: 0.3em 0.8em;
   margin: 0.4em 0;
   font-size: 1em;
@@ -93,17 +94,52 @@ hr {
   border: 1px solid transparent;
 }
 
-#generate-button:hover {
+
+
+button.generate:active {
+  background: none;
+}
+
+button.generate.fetching {
+  background: #fff2;
+}
+
+button.generate.error {
+  filter: drop-shadow(0 0 0.5em rgb(211, 69, 69, 0.5));
+  background: rgb(211, 69, 69);
+}
+
+button.generate.invalid {
+  filter: drop-shadow(0 0 0.5em rgb(233, 186, 56, 0.5));
+  background: rgb(233, 186, 56);
+}
+
+button.generate:hover {
   background: #fff1;
   border: 1px solid #ddf1;
 }
 
-#generate-button:active {
-  background: none;
+button.generate span.generate {
+  display: inline-block;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-#generate-button.fetching {
-  background: #fff4;
+button.generate.fetching .generate{
+  animation-name: spin;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 55%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 .menu .title {
