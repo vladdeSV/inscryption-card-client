@@ -22,8 +22,8 @@ export default class Portrait extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <FileUpload label={<span>Common portrait <small>(114×94 px)</small></span>} onUpdate={(data) => this.setState({ common: data }, this.onUpdate)} />
-        <FileUpload label={<span>Pixel portrait <small>(41×28 px)</small></span>} onUpdate={(data) => this.setState({ gbc: data }, this.onUpdate)} />
+        <FileUpload label={<span>Common portrait <small>(114×94 px)</small></span>} onUpdate={data => this.setState({ common: data }, this.onUpdate)} />
+        <FileUpload label={<span>Pixel portrait <small>(41×28 px)</small></span>} onUpdate={data => this.setState({ gbc: data }, this.onUpdate)} />
       </>
     )
   }

@@ -77,7 +77,6 @@ export default class CardImage extends React.Component<Props, State> {
         .then(blobTo64)
         .then(data => this.setState({ data }))
         .catch(e => {
-
           let err: RequestErrorType = 'error'
           if (e instanceof FooError) {
             err = e.type
