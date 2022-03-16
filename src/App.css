@@ -160,6 +160,7 @@ button.generate.fetching .generate{
   padding: 0.3em 0.5em;
   border-radius: 0.5em;
   border: none;
+  max-width: 100%;
 }
 
 input[type="number"] {
@@ -224,4 +225,26 @@ input[type="text"] {
 .info-circle:hover > .info {
   transform: scale(1);
   opacity: 1;
+}
+
+@media (max-width: 1000px) { 
+
+  .app {
+    height: unset;
+  }
+
+  .app > h1 {
+    display: none;
+  }
+
+  #generator {
+    flex-direction: column;
+    max-height: unset;
+    filter: none;
+    border-radius: 0;
+  }
+
+  #generator > section.card-display {
+    min-height: 600px;
+  }
 }
