@@ -58,8 +58,11 @@ export default class CardImage extends React.Component<Props, State> {
       meta.locale ? ('locale=' + meta.locale) : undefined,
     ].filter(x => x)
 
+    // if host exists in env
+    const endpoint = process.env.REACT_APP_API ?? 'http://1999199.vladde.me'
+
     this.setState({ fetching: true, error: undefined }, () =>
-      fetch(`https://1999199.vladde.me/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`, opts)
+      fetch(`${endpoint}/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`, opts)
         .then(res => {
           if (!res.ok) {
 
