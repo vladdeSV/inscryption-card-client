@@ -59,7 +59,7 @@ export default class CardImage extends React.Component<Props, State> {
     ].filter(x => x)
 
     this.setState({ fetching: true, error: undefined }, () =>
-      fetch(`http://localhost:8080/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`, opts)
+      fetch(`https://1999199.vladde.me/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`, opts)
         .then(res => {
           if (!res.ok) {
 
