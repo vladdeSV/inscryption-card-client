@@ -59,7 +59,7 @@ export default class CardImage extends React.Component<Props, State> {
     ].filter(x => x)
 
     // if host exists in env
-    const endpoint = process.env.REACT_APP_API ?? 'http://1999199.vladde.me'
+    const endpoint = (process.env.NODE_ENV === 'development' && process.env.REACT_APP_API) || 'http://1999199.vladde.me'
 
     this.setState({ fetching: true, error: undefined }, () =>
       fetch(`${endpoint}/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`, opts)
