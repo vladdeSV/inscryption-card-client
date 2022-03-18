@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/inscryption-card-client/static/css/main.9ca90fdc.css",
-    "main.js": "/inscryption-card-client/static/js/main.dc3029d4.js",
+    "main.js": "/inscryption-card-client/static/js/main.b9f73a15.js",
     "static/media/Marksman.otf": "/inscryption-card-client/static/media/Marksman.126f27ce74122911a3a0.otf",
     "index.html": "/inscryption-card-client/index.html",
     "main.9ca90fdc.css.map": "/inscryption-card-client/static/css/main.9ca90fdc.css.map",
-    "main.dc3029d4.js.map": "/inscryption-card-client/static/js/main.dc3029d4.js.map"
+    "main.b9f73a15.js.map": "/inscryption-card-client/static/js/main.b9f73a15.js.map"
   },
   "entrypoints": [
     "static/css/main.9ca90fdc.css",
-    "static/js/main.dc3029d4.js"
+    "static/js/main.b9f73a15.js"
   ]
 }
