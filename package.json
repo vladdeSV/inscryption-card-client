@@ -2,7 +2,7 @@
   "name": "inscryption-card-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://vladdesv.github.io/inscryption-card-client",
+  "homepage": "https://card-test.vladde.me/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
