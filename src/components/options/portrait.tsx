@@ -45,8 +45,6 @@ export default class Portrait extends React.Component<Props, State> {
   }
 
   private onUpdate() {
-    console.log('updated');
-
     switch (this.state.selected) {
       case 'custom': {
         this.props.onValueChange({ type: 'custom', data: this.state.custom })
