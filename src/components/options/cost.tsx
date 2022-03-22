@@ -1,4 +1,5 @@
 import React from 'react';
+import CheckboxGroup from '../checkboxGroup';
 
 type CostData = {
   bloodCost: number, // 0 - 4
@@ -63,17 +64,15 @@ export default class CostSelect extends React.Component<Props, State> {
           <span>Energy</span>
           <input type="number" min={1} max={6} defaultValue={1} disabled={this.state.selected !== 'energy'} onChange={e => this.setState({ energy: Number(e.target.value) }, () => this.onUpdate())} />
         </label>
-        {/*
-          <label>
-            <input type='radio' name='cost' onClick={() => this.setState({ selected: 'gem' }, () => this.onUpdate())} />
-            Gems
-            <CheckboxGroup onUpdate={opts => this.setState({ gems: opts.filter(opt => opt.checked).map(opt => opt.value) }, () => this.onUpdate())} options={[
-              { label: 'Orange', value: 'orange' },
-              { label: 'Green', value: 'green' },
-              { label: 'Blue', value: 'blue' },
-            ]} />
-          </label>
-         */}
+        <label>
+          <input type='radio' name='cost' onClick={() => this.setState({ selected: 'gem' }, () => this.onUpdate())} />
+          <span>Gems</span>
+          <CheckboxGroup enabled={this.state.selected === 'gem'} onUpdate={opts => this.setState({ gems: opts.filter(opt => opt.checked).map(opt => opt.value) }, () => this.onUpdate())} options={[
+            { label: 'Orange', value: 'orange' },
+            { label: 'Green', value: 'green' },
+            { label: 'Blue', value: 'blue' },
+          ]} />
+        </label>
       </>
     )
   }
