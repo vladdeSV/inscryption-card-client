@@ -5,6 +5,7 @@ type Props = {
   label: JSX.Element | string,
   onUpdate: (data64: string | undefined) => void,
   allowedTypes?: string[],
+  enabled?: boolean,
 }
 type State = {
   filename: undefined,
@@ -63,7 +64,11 @@ export default class FileUpload extends React.Component<Props, State> {
           <div>
             <label className="input">
               {this.state.data ? this.state.filename : 'No file selected'}
-              <input type='file' onChange={e => e.target.files && this.onUpload(e.target.files)} />
+              <input
+                type='file'
+                disabled={this.props.enabled !== undefined ? !this.props.enabled : false}
+                onChange={e => e.target.files && this.onUpload(e.target.files) && (e.target.value = '')}
+              />
             </label>
             {this.state.data ? close : undefined}
           </div>
