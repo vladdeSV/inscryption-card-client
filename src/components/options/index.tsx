@@ -8,7 +8,7 @@ import Cost from './cost';
 import Sigil from './sigil';
 import Section from '../menuSection';
 import Temple from './temple';
-import Portrait from './portrait';
+import Portrait, { PortraitData } from './portrait';
 import Flags from './flags';
 
 export type Card = {
@@ -30,13 +30,7 @@ export type Card = {
   golden: boolean,
   squid: boolean,
   fused: boolean,
-  portrait?: {
-    type: 'custom',
-    data: {
-      common?: string,
-      gbc?: string,
-    }
-  }
+  portrait?: PortraitData
 }
 
 export const templateCard: Card = {
@@ -73,7 +67,7 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
       { title: 'Type', element: <CardType onValueChange={(rare, terrain, terrainLayout) => this.setState({ rare, terrain, terrainLayout }, () => this.props.onCardUpdate(this.state))} />, help: 'Card appearance might be affected in different card styles' },
       { title: 'Health', element: <Health onValueChange={health => this.setState({ health }, this.onUpdate)} /> },
       { title: 'Power', element: <Power onValueChange={(power, staticon) => this.setState({ power, staticon }, this.onUpdate)} /> },
-      { title: 'Portrait', element: <Portrait onValueChange={(common, gbc) => this.setState({ portrait: { type: 'custom', data: { common, gbc } } }, this.onUpdate)} /> },
+      { title: 'Portrait', element: <Portrait onValueChange={portrait => this.setState({ portrait }, this.onUpdate)} /> },
       { title: 'Cost', element: <Cost onValueChange={(blood, bone, energy, gems) => this.setState({ bloodCost: blood, boneCost: bone, energyCost: energy, gemCost: gems }, this.onUpdate)} /> },
       { title: 'Abilities', element: <Sigil onValueChange={sigils => this.setState({ sigils }, this.onUpdate)} /> },
       { title: 'Tribes', element: <Tribe onValueChange={tribes => this.setState({ tribes }, this.onUpdate)} /> },
