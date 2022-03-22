@@ -21,7 +21,26 @@ body, input, select, button {
 label {
   white-space: nowrap;
   margin: 0.5em 0;
+  display: block;
+}
+
+label > label {
   display: inline-block;
+}
+
+label > input[type="radio"] {
+  margin: 0.45em 0.8em 0.5em 0.2em;
+}
+
+label > input[type="radio"] ~ * {
+  opacity: 0.4;
+}
+label > input[type="radio"]:checked ~ * {
+  opacity: 1;
+}
+
+label h3 {
+  margin: 0;
 }
 
 hr {
@@ -230,6 +249,10 @@ label.checkbox {
   display: inline-flex;
   align-items: center;
   user-select: none;
+}
+
+label.portrait {
+  display: flex;
 }
 
 .name-selection {

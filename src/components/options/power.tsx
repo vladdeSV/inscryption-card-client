@@ -26,14 +26,14 @@ export default class PowerSelect extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <p>
-          <input type='radio' defaultChecked={true} name='powertype' id="power-power" onClick={() => this.setState({ selected: 'power' }, this.onChange)} />
-          <label htmlFor="power-power">Power</label>
+        <label>
+          <input type='radio' defaultChecked={true} name='powertype' onClick={() => this.setState({ selected: 'power' }, this.onChange)} />
+          <span>Power</span>
           <input type="number" disabled={this.state.selected !== 'power'} min={0} max={99} defaultValue={0} onChange={e => this.setState({ power: Number(e.target.value) }, this.onChange)} />
-        </p>
-        <p>
+        </label>
+        <label>
           <input type='radio' name='powertype' id="power-staticon" onClick={() => this.setState({ selected: 'staticon' }, this.onChange)} />
-          <label htmlFor="power-staticon">Variable Stat</label>
+          <span>Variable Stat</span>
           <SelectOptions
             uniqueName='staticons'
             disabled={this.state.selected !== 'staticon'}
@@ -46,7 +46,7 @@ export default class PowerSelect extends React.Component<Props, State> {
               { value: 'greengems', label: 'Emerald Power' },
             ]}
           />
-        </p>
+        </label>
       </>
     )
   }

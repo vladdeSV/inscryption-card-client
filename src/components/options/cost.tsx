@@ -44,34 +44,26 @@ export default class CostSelect extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <p>
-          <label>
-            <input type='radio' name='cost' defaultChecked={true} onClick={() => this.setState({ selected: undefined }, () => this.onUpdate())} />
-            None
-          </label>
-        </p>
-        <p>
-          <label>
-            <input type='radio' name='cost' onClick={() => this.setState({ selected: 'blood' }, () => this.onUpdate())} />
-            Blood
-            <input type="number" min={1} max={4} defaultValue={1} disabled={this.state.selected !== 'blood'} onChange={e => this.setState({ blood: Number(e.target.value) }, () => this.onUpdate())} />
-          </label>
-        </p>
-        <p>
-          <label>
-            <input type='radio' name='cost' onClick={() => this.setState({ selected: 'bone' }, () => this.onUpdate())} />
-            Bone
-            <input type="number" min={1} max={10} defaultValue={1} disabled={this.state.selected !== 'bone'} onChange={e => this.setState({ bone: Number(e.target.value) }, () => this.onUpdate())} />
-          </label>
-        </p>
-        <p>
-          <label>
-            <input type='radio' name='cost' onClick={() => this.setState({ selected: 'energy' }, () => this.onUpdate())} />
-            Energy
-            <input type="number" min={1} max={6} defaultValue={1} disabled={this.state.selected !== 'energy'} onChange={e => this.setState({ energy: Number(e.target.value) }, () => this.onUpdate())} />
-          </label>
-        </p>
-        {/* <p>
+        <label>
+          <input type='radio' name='cost' defaultChecked={true} onClick={() => this.setState({ selected: undefined }, () => this.onUpdate())} />
+          <span>None</span>
+        </label>
+        <label>
+          <input type='radio' name='cost' onClick={() => this.setState({ selected: 'blood' }, () => this.onUpdate())} />
+          <span>Blood</span>
+          <input type="number" min={1} max={4} defaultValue={1} disabled={this.state.selected !== 'blood'} onChange={e => this.setState({ blood: Number(e.target.value) }, () => this.onUpdate())} />
+        </label>
+        <label>
+          <input type='radio' name='cost' onClick={() => this.setState({ selected: 'bone' }, () => this.onUpdate())} />
+          <span>Bone</span>
+          <input type="number" min={1} max={10} defaultValue={1} disabled={this.state.selected !== 'bone'} onChange={e => this.setState({ bone: Number(e.target.value) }, () => this.onUpdate())} />
+        </label>
+        <label>
+          <input type='radio' name='cost' onClick={() => this.setState({ selected: 'energy' }, () => this.onUpdate())} />
+          <span>Energy</span>
+          <input type="number" min={1} max={6} defaultValue={1} disabled={this.state.selected !== 'energy'} onChange={e => this.setState({ energy: Number(e.target.value) }, () => this.onUpdate())} />
+        </label>
+        {/*
           <label>
             <input type='radio' name='cost' onClick={() => this.setState({ selected: 'gem' }, () => this.onUpdate())} />
             Gems
@@ -81,7 +73,7 @@ export default class CostSelect extends React.Component<Props, State> {
               { label: 'Blue', value: 'blue' },
             ]} />
           </label>
-        </p> */}
+         */}
       </>
     )
   }
