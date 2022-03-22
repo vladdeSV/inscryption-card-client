@@ -28,6 +28,10 @@ label > label {
   display: inline-block;
 }
 
+label label.checkbox {
+  margin: 0;
+}
+
 label > input[type="radio"] {
   margin: 0.45em 0.8em 0.5em 0.2em;
 }
@@ -41,6 +45,7 @@ label > input[type="radio"]:checked ~ * {
 
 label h3 {
   margin: 0;
+  margin-bottom: 0.3em;
 }
 
 hr {
@@ -251,7 +256,8 @@ label > input[type="radio"]:checked ~ * .upload-section .close {
 }
 
 label.checkbox {
-  padding: 0.5rem;
+  padding: 0 0.5rem;
+  margin: 0;
   display: inline-flex;
   align-items: center;
   user-select: none;

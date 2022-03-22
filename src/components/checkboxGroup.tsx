@@ -8,6 +8,7 @@ type Option<T> = {
 type CheckboxGroupProps<T> = {
   options: Option<T>[],
   onUpdate: (options: Required<Option<T>>[]) => void,
+  enabled?: boolean,
 }
 type CheckboxGroupState<T> = {
   options: Required<Option<T>>[]
@@ -34,7 +35,7 @@ class CheckboxGroup<T extends string | number> extends React.Component<CheckboxG
 
   private checkbox = (option: Required<Option<T>>, index: number) => (
     <label key={index} className='checkbox'>
-      <input type="checkbox" checked={option.checked} value={option.value} onChange={e => this.updateCheckbox(index, e.target.checked)} />
+      <input disabled={this.props.enabled !== undefined ? !this.props.enabled : false} type="checkbox" checked={option.checked} value={option.value} onChange={e => this.updateCheckbox(index, e.target.checked)} />
       {option.label}
     </label>
   )
