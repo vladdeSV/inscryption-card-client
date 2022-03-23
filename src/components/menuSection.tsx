@@ -1,7 +1,7 @@
 import React from 'react'
 import InfoCircle from './infoCircle'
 
-class MenuSection extends React.Component<{ title: string, open?: boolean, help?: string }> {
+class MenuSection extends React.Component<{ title: string | JSX.Element, open?: boolean, help?: string }> {
   render() {
     return (
       <section className='menu'>
