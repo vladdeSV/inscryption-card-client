@@ -60,6 +60,7 @@ hr {
 .gbc {
   font-family: 'Marksman', monospace;
   font-size: 1.4em;
+  font-weight: normal;
 }
 
 .disabled {
