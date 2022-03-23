@@ -19,7 +19,6 @@ body, input, select, button {
 }
 
 label {
-  white-space: nowrap;
   margin: 0.5em 0;
   display: block;
 }
@@ -232,7 +231,7 @@ input[type="file"]  {
   user-select: none;
 }
 
-label > input[type="radio"]:checked ~ * .upload-section .close {
+.upload-section .close {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -265,6 +264,10 @@ label.checkbox {
 
 label.portrait {
   display: flex;
+}
+
+label.portrait > section {
+  flex: 1;
 }
 
 .name-selection {
