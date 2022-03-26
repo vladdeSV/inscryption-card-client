@@ -3,11 +3,12 @@ import CardGeneratorMeta, { Meta } from '../components/meta/cardGeneratorMeta';
 import CardGeneratorOptions, { Card, templateCard } from '../components/options';
 import CardImage from '../components/cardImage'
 
-export default class CardGenerator extends React.Component<{}, { card: Card, meta: Meta }> {
+export default class CardGenerator extends React.Component<{}, { betaKey: string, card: Card, meta: Meta }> {
 
   constructor(props: {}) {
     super(props)
     this.state = {
+      betaKey: '',
       card: templateCard,
       meta: {
         act: 'leshy',
@@ -25,6 +26,11 @@ export default class CardGenerator extends React.Component<{}, { card: Card, met
           <CardImage card={this.state.card} meta={this.state.meta} />
         </section>
         <section>
+          <section className='menu'>
+            <h3>Beta key</h3>
+            <input type="text" onChange={e => this.setState({ betaKey: e.target.value })} />
+          </section>
+          <hr />
           <CardGeneratorOptions onCardUpdate={card => this.setState({ card })} />
           <hr />
           <CardGeneratorMeta onMetaUpdate={meta => this.setState({ meta })} />
