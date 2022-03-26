@@ -6,6 +6,7 @@ import GenerateButton from "./generateButton";
 
 type RequestErrorType = 'invalid' | 'error'
 type Props = {
+  betaKey: string,
   card: Card,
   meta: Meta,
 }
@@ -40,12 +41,12 @@ export default class CardImage extends React.Component<Props, State> {
     return (
       <>
         {this.state.data ? <img src={this.state.data} alt="custom card" /> : undefined}
-        <button className={clss.join(' ')} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate <GenerateButton /></button>
+        <button className={clss.join(' ')} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta, this.props.betaKey)}>Generate <GenerateButton /></button>
       </>
     )
   }
 
-  updateCardImage(card: Card, meta: Meta) {
+  updateCardImage(card: Card, meta: Meta, betaKey: string) {
     const opts = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -53,6 +54,7 @@ export default class CardImage extends React.Component<Props, State> {
     }
 
     const parameters = [
+      betaKey ? `betaKey=${betaKey}` : undefined,
       meta.border ? 'border' : undefined,
       meta.scanline ? 'scanline' : undefined,
       meta.locale ? ('locale=' + meta.locale) : undefined,

@@ -23,7 +23,7 @@ export default class CardGenerator extends React.Component<{}, { betaKey: string
     return (
       <div id='generator'>
         <section className='card-display'>
-          <CardImage card={this.state.card} meta={this.state.meta} />
+          <CardImage card={this.state.card} meta={this.state.meta} betaKey={this.state.betaKey} />
         </section>
         <section>
           <section className='menu'>
