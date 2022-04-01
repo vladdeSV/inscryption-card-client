@@ -23,14 +23,9 @@ export default class CardGenerator extends React.Component<{}, { betaKey: string
     return (
       <div id='generator'>
         <section className='card-display'>
-          <CardImage card={this.state.card} meta={this.state.meta} betaKey={this.state.betaKey} />
+          <CardImage card={this.state.card} meta={this.state.meta} />
         </section>
         <section>
-          <section className='menu'>
-            <h3>Beta key</h3>
-            <input type="text" onChange={e => this.setState({ betaKey: e.target.value })} />
-          </section>
-          <hr />
           <CardGeneratorOptions onCardUpdate={card => this.setState({ card })} />
           <hr />
           <CardGeneratorMeta onMetaUpdate={meta => this.setState({ meta })} />
