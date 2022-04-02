@@ -3,6 +3,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
+
 @font-face {
   font-family: 'Marksman';
   src: local('Marksman'), url(/public/Marksman.otf) format('opentype');
@@ -14,7 +15,10 @@ body {
   font-size: 120%;
 }
 
-body, input, select, button {
+body,
+input,
+select,
+button {
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -23,7 +27,7 @@ label {
   display: block;
 }
 
-label > label {
+label>label {
   display: inline-block;
 }
 
@@ -31,14 +35,15 @@ label label.checkbox {
   margin: 0;
 }
 
-label > input[type="radio"] {
+label>input[type="radio"] {
   margin: 0.45em 0.8em 0.5em 0.2em;
 }
 
-label > input[type="radio"] ~ * {
+label>input[type="radio"]~* {
   opacity: 0.4;
 }
-label > input[type="radio"]:checked ~ * {
+
+label>input[type="radio"]:checked~* {
   opacity: 1;
 }
 
@@ -75,7 +80,7 @@ hr {
   height: 100vh;
 }
 
-.app > h1 {
+.app>h1 {
   font-size: 2.2em;
   margin: 0 0 1.2em 0;
 }
@@ -89,28 +94,28 @@ hr {
   max-height: 600px;
   border-radius: 2em 4px 4px 2em;
   overflow: hidden;
-  filter: drop-shadow(0 0 2em rgba(0,0,0,0.35));
+  filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.35));
 }
 
-#generator > section {
+#generator>section {
   flex: 1;
   overflow: auto;
   padding: 0 1.5em;
 }
 
-#generator > section.card-display {
+#generator>section.card-display {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.35);
+  background-color: rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
 }
 
-#generator > section.card-display > img {
+#generator>section.card-display>img {
   height: 450px;
   padding: 1em;
-  filter: drop-shadow(0 0 1rem rgba(150,100,100, 0.3));
+  filter: drop-shadow(0 0 1rem rgba(150, 100, 100, 0.3));
 }
 
 button.generate {
@@ -153,7 +158,7 @@ button.generate span.generate {
   box-sizing: border-box;
 }
 
-button.generate.fetching .generate{
+button.generate.fetching .generate {
   animation-name: spin;
   animation-timing-function: ease-in-out;
   animation-duration: 1.2s;
@@ -165,6 +170,7 @@ button.generate.fetching .generate{
   from {
     transform: rotate(0turn);
   }
+
   to {
     transform: rotate(1turn);
   }
@@ -182,7 +188,8 @@ button.generate.fetching .generate{
   margin: 0.5em;
 }
 
-.menu input, .menu select {
+.menu input,
+.menu select {
   font-size: 1em;
   margin: 0.1em 0.5em;
   padding: 0.3em 0.5em;
@@ -195,7 +202,7 @@ input[type="number"] {
   width: 2em;
 }
 
-input[type="file"]  {
+input[type="file"] {
   display: none;
 }
 
@@ -205,7 +212,7 @@ input[type="file"]  {
   padding: 0.3em 0;
 }
 
-.upload-section > div {
+.upload-section>div {
   display: inline-flex;
   max-width: 100%;
   border-radius: 0.5em;
@@ -240,18 +247,18 @@ input[type="file"]  {
   padding-right: 0.7em;
 }
 
-label > input[type="radio"]:checked ~ * .upload-section .input:hover {
+label>input[type="radio"]:checked~* .upload-section .input:hover {
   background: #fff2;
 }
 
-label > input[type="radio"]:checked ~ * .upload-section .close:hover {
+label>input[type="radio"]:checked~* .upload-section .close:hover {
   background: #c44;
   border-left: 1px solid #c44;
   box-shadow: 0 0 0.5em #a229;
 }
 
-label > input[type="radio"]:checked ~ * .upload-section .input,
-label > input[type="radio"]:checked ~ * .upload-section .close {
+label>input[type="radio"]:checked~* .upload-section .input,
+label>input[type="radio"]:checked~* .upload-section .close {
   cursor: pointer;
 }
 
@@ -267,7 +274,7 @@ label.portrait {
   display: flex;
 }
 
-label.portrait > section {
+label.portrait>section {
   flex: 1;
 }
 
@@ -275,7 +282,7 @@ label.portrait > section {
   display: flex;
 }
 
-.name-selection > input {
+.name-selection>input {
   flex: 1;
 }
 
@@ -296,41 +303,41 @@ input[type="text"] {
   opacity: 1;
 }
 
-.info-circle > .info {
+.info-circle>.info {
   transition: 0.1s;
-  
+
   background-color: antiquewhite;
   color: #111;
 
   font-size: 0.6em;
   font-weight: 600;
   width: 250px;
-  
+
   display: block;
   position: absolute;
   top: -0.3em;
   left: 100%;
   padding: 0.8em;
   border-radius: 0.2em;
-  
+
   transition-timing-function: ease-in-out;
   transform-origin: 0 0.4em;
   transform: scale(0);
   opacity: 0;
 }
 
-.info-circle:hover > .info {
+.info-circle:hover>.info {
   transform: scale(1);
   opacity: 1;
 }
 
-@media (max-width: 1000px) { 
+@media (max-width: 1000px) {
 
   .app {
     height: unset;
   }
 
-  .app > h1 {
+  .app>h1 {
     display: none;
   }
 
@@ -341,7 +348,7 @@ input[type="text"] {
     border-radius: 0;
   }
 
-  #generator > section.card-display {
+  #generator>section.card-display {
     min-height: 600px;
   }
 }
