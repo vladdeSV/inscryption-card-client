@@ -176,6 +176,10 @@ button.generate.fetching .generate {
   }
 }
 
+section.menu {
+  padding: 0.2em 0;
+}
+
 .menu .title {
   font-size: 1.3em;
   font-weight: bold;
