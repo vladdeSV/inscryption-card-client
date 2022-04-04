@@ -95,7 +95,7 @@ hr {
   border-radius: 2em 4px 4px 2em;
   overflow: hidden;
   filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.35));
-  box-shadow: inset 0 1px 0 0 #fff2
+  border-top: 1px solid #fff2
 }
 
 #generator>section {
@@ -351,6 +351,7 @@ input[type="text"] {
     max-height: unset;
     filter: none;
     border-radius: 0;
+    border: none;
   }
 
   #generator>section.card-display {
