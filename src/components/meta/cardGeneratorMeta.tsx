@@ -53,7 +53,7 @@ export default class CardGeneratorMeta extends React.Component<Props, Meta> {
           <CheckboxGroup
             options={[
               { label: 'Border', value: 'border' },
-              { label: (<span className='gbc'>Scanline</span>), value: 'scanline' }
+              { label: (<span className='gbc'>Scanline (GBC)</span>), value: 'scanline' }
             ]}
             onUpdate={opts => {
               const selected = opts.filter(opt => opt.checked).map(opt => opt.value)
