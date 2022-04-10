@@ -39,7 +39,7 @@ export default class CardGenerator extends React.Component<{}, { betaKey: string
 const Credits = () => (
   <section id='credits' className='menu'>
     <p className='title'>Credits</p>
-    <p>original art from <i>Inscryption</i> by Daniel Mullins, redistrubuted with permissions</p>
-    <p>generator made by vladde</p>
+    <p>Original art from <i>Inscryption</i> by Daniel Mullins, redistrubuted with permissions</p>
+    <p>Generator made by Vladimirs Nordholm</p>
   </section>
 )
