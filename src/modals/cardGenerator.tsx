@@ -29,7 +29,9 @@ export default class CardGenerator extends React.Component<{}, { betaKey: string
           <CardGeneratorOptions onCardUpdate={card => this.setState({ card })} />
           <hr />
           <CardGeneratorMeta onMetaUpdate={meta => this.setState({ meta })} />
+          <hr />
           <Credits />
+          <Supporters />
         </section>
       </div>
     );
@@ -41,5 +43,18 @@ const Credits = () => (
     <p className='title'>Credits</p>
     <p>Original art from <i>Inscryption</i> by Daniel Mullins, redistrubuted with permissions</p>
     <p>Generator made by Vladimirs Nordholm</p>
+  </section>
+)
+
+const Supporters = () => (
+  <section id='supporters' className='menu'>
+    <p className='title'>Supporters</p>
+    <p>Special thanks to the following amazing people for supporting my work on Patreon 🎉 (updated semi-regurarily)</p>
+    <ul>
+      {['Maj', 'Citywatchers', 'Scott St. Onge'].map((name, index) => (
+        <li key={index}>{name}</li>
+      ))}
+      <li><a href="https://www.patreon.com/vladde">You…?</a></li>
+    </ul>
   </section>
 )
