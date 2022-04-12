@@ -9,6 +9,7 @@ class App extends React.Component {
     return (
       <main className='app'>
         <h1>Inscryption card generator</h1>
+        <h3>(testing automatic website deployment)</h3>
         <CardGenerator />
       </main>
     );
