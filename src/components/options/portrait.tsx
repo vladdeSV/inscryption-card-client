@@ -1,4 +1,5 @@
 import React from 'react';
+import CreaturePortraitSelect from './portrait/creature';
 import CustomPortraitSelect, { CustomPortrait } from './portrait/custom';
 import DeathcardPortraitSelect, { Deathcard } from './portrait/deathcard';
 
@@ -16,6 +17,9 @@ export type PortraitData = {
     mouth: number,
     lostEye: boolean,
   }
+} | {
+  type: 'creature',
+  creature: string,
 }
 
 type Props = {
@@ -23,9 +27,10 @@ type Props = {
 }
 
 type State = {
-  selected: 'custom' | 'deathcard' | 'none'
+  selected: 'custom' | 'deathcard' | 'creature' | 'none'
   custom: CustomPortrait,
-  deathcard: Deathcard
+  deathcard: Deathcard,
+  creature: string,
 }
 export default class Portrait extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -38,7 +43,8 @@ export default class Portrait extends React.Component<Props, State> {
         mouth: 0,
         eyes: 0,
         lostEye: false,
-      }
+      },
+      creature: 'Adder',
     }
 
     this.onUpdate()
@@ -52,6 +58,10 @@ export default class Portrait extends React.Component<Props, State> {
       }
       case 'deathcard': {
         this.props.onValueChange({ type: 'deathcard', data: this.state.deathcard })
+        break
+      }
+      case 'creature': {
+        this.props.onValueChange({ type: 'creature', creature: this.state.creature })
         break
       }
       case 'none': {
@@ -78,6 +88,11 @@ export default class Portrait extends React.Component<Props, State> {
       onUpdate={deathcard => this.setState({ deathcard }, this.onUpdate)}
     />
 
+    const creature = <CreaturePortraitSelect
+      enabled={this.state.selected === 'creature'}
+      onUpdate={creature => this.setState({ creature }, this.onUpdate)}
+    />
+
     const foo = (select: State['selected'], element: JSX.Element) => (
       <label className='portrait'>
         <input type="radio" name="portrait" checked={this.state.selected === select} onChange={() => this.setState({ selected: select }, this.onUpdate)} />
@@ -91,6 +106,7 @@ export default class Portrait extends React.Component<Props, State> {
       <>
         {foo('none', none)}
         {foo('deathcard', deathcard)}
+        {foo('creature', creature)}
         {foo('custom', custom)}
       </>
     )
