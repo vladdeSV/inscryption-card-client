@@ -16,8 +16,8 @@ export default class CreaturePortraitSelect extends React.Component<Props> {
             <option value='Alpha'>Alpha</option>
             <option value='Amalgam'>Amalgam</option>
             <option value='Amoeba'>Amoeba</option>
-            <option value='Ant'>#Ant</option>
-            <option value='AntQueen'>#AntQueen</option>
+            <option value='Ant'>Worker Ant</option>
+            <option value='AntQueen'>Ant Queen</option>
             <option value='Bat'>Bat</option>
             <option value='Beaver'>Beaver</option>
             <option value='Bee'>Bee</option>
