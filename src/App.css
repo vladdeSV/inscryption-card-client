@@ -201,6 +201,7 @@ section.menu {
   border-radius: 0.5em;
   border: none;
   max-width: 100%;
+  background: #333;
 }
 
 input[type="number"] {
