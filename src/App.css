@@ -58,6 +58,10 @@ hr {
   margin-block-start: 1.5em;
 }
 
+select {
+  -webkit-appearance: none;
+}
+
 #update-image {
   margin: 1rem 0 0 0;
 }
