@@ -71,7 +71,7 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
       { title: 'Abilities', element: <Sigil onValueChange={sigils => this.setState({ sigils }, this.onUpdate)} /> },
       { title: 'Portrait', element: <Portrait onValueChange={portrait => this.setState({ portrait }, this.onUpdate)} /> },
       { title: 'Tribes', element: <Tribe onValueChange={tribes => this.setState({ tribes }, this.onUpdate)} /> },
-      { title: <span className='gbc'>Temple (GBC)</span>, element: <Temple onValueChange={temple => this.setState({ temple }, this.onUpdate)} /> },
+      { title: 'Temple', element: <Temple onValueChange={temple => this.setState({ temple }, this.onUpdate)} /> },
       { title: 'Other', element: <Flags onValueChange={(fused, golden, squid) => this.setState({ fused, golden, squid }, this.onUpdate)} /> },
     ]
 
