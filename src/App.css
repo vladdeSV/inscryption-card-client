@@ -105,7 +105,7 @@ select {
 #generator>section {
   flex: 1;
   overflow: auto;
-  padding: 0 1.5em;
+  padding: 0.6em 1.5em;
 }
 
 #generator>section.card-display {
