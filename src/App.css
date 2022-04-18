@@ -15,6 +15,18 @@ body {
   font-size: 120%;
 }
 
+a {
+  color: #9e9eff;
+}
+
+a:visited {
+  color: #d0adf0;
+}
+
+a:active {
+  color: #ff9e9e;
+}
+
 body,
 input,
 select,
