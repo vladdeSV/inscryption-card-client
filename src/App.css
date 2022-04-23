@@ -111,7 +111,7 @@ select {
   border-radius: 2em 4px 4px 2em;
   overflow: hidden;
   filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.35));
-  border-top: 1px solid #fff2
+  border-top: 1px solid #fff2;
 }
 
 #generator>section {
@@ -354,7 +354,6 @@ input[type="text"] {
 }
 
 @media (max-width: 1000px) {
-
   .app {
     height: unset;
   }
