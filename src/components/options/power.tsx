@@ -16,7 +16,7 @@ export default class PowerSelect extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
-    this.state = { selected: 'power', power: 0, staticon: 'ants' }
+    this.state = { selected: 'power', power: 0, staticon: 'bell' }
   }
 
   private onChange() {
