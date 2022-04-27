@@ -10,6 +10,8 @@ export default class SigilSelect extends React.Component<{ onValueChange: (sigil
     const sigils: { id: string | undefined, name: string }[] = [
       { id: '', name: '-' },
 
+      { id: 'madeofstone', name: 'Made of Stone' },
+
       { id: 'drawrabbits', name: 'Rabbit Hole' },
       { id: 'beesonhit', name: 'Bees Within' },
       { id: 'strafe', name: 'Sprinter' },
