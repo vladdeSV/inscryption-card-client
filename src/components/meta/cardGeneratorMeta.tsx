@@ -5,7 +5,7 @@ import SelectOptions from '../selectOptions'
 
 export type Locale = 'default' | 'jp' | 'ko' | 'zh-cn' | 'zh-tw'
 export type Meta = {
-  act: 'leshy' | 'gbc',
+  act: 'leshy' | 'gbc' | 'pixelprofilgate',
   border: boolean
   scanline: boolean,
   locale: Locale,
@@ -30,9 +30,18 @@ export default class CardGeneratorMeta extends React.Component<Props, Meta> {
           <SelectOptions
             uniqueName='act'
             onChange={value => this.setState({ act: value }, this.onUpdate)}
-            options={[
-              { value: 'leshy', label: 'Leshy (act 1)' },
-              { value: 'gbc', label: 'GBC (act 2)' },
+            groups={[
+              {
+                name: 'In-game', options: [
+                  { value: 'leshy', label: 'Leshy (act 1)' },
+                  { value: 'gbc', label: 'GBC (act 2)' },
+                ]
+              },
+              {
+                name: 'Community', options: [
+                  { value: 'pixelprofilgate', label: 'Pixel Profilgate' },
+                ]
+              }
             ]}
           />
         </Section>
