@@ -77,7 +77,7 @@ export default class SigilSelect extends React.Component<{ onValueChange: (sigil
       { id: 'drawvesselonhit', name: 'Vessel Printer' },
       { id: 'conduitenergy', name: 'Energy Conduit' },
       { id: 'bombspawner', name: 'Bomb Spewer' },
-      { id: 'doubledeath', name: 'Handy' },
+      { id: 'doubledeath', name: 'Double Death' },
       { id: 'activatedrandompowerenergy', name: 'Power Dice' },
       { id: 'activatedrandompowerbone', name: 'Random Power Bone' },
       { id: 'activatedstatsup', name: 'Enlarge' },
