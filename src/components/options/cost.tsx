@@ -5,10 +5,10 @@ type CostData = {
   bloodCost: number, // 0 - 4
   boneCost: number, // 0 - 13, 0 - 10
   energyCost: number, // 0 - 6
-  gemCost: { orange: boolean, green: boolean, blue: boolean },
+  gemCost?: { orange: boolean, green: boolean, blue: boolean },
 }
 type Props = {
-  onValueChange: (bloodCost: number, boneCost: number, energyCost: number, gemCost: { orange: boolean, green: boolean, blue: boolean }) => void
+  onValueChange: (bloodCost: number, boneCost: number, energyCost: number, gemCost?: { orange: boolean, green: boolean, blue: boolean }) => void
 }
 type State = {
   selected?: 'blood' | 'bone' | 'energy' | 'gem',
@@ -38,7 +38,7 @@ export default class CostSelect extends React.Component<Props, State> {
       selected === 'blood' ? this.state.blood : 0,
       selected === 'bone' ? this.state.bone : 0,
       selected === 'energy' ? this.state.energy : 0,
-      selected === 'gem' ? gems : { orange: false, green: false, blue: false },
+      selected === 'gem' ? gems : undefined,
     )
   }
 

@@ -20,7 +20,7 @@ export type Card = {
   bloodCost: number, // 0 - 4
   boneCost: number, // 0 - 13, 0 - 10
   energyCost: number, // 0 - 6
-  gemCost: { orange: boolean, green: boolean, blue: boolean },
+  gemCost?: { orange: boolean, green: boolean, blue: boolean },
   sigils: string[], // Sigil[], max length 3
   decals: string[], // ('blood' | 'smoke' | 'paint')[]
   temple: string, // Temple
@@ -42,7 +42,7 @@ export const templateCard: Card = {
   bloodCost: 0, // 0 - 4
   boneCost: 0, // 0 - 13, 0 - 10
   energyCost: 0, // 0 - 6
-  gemCost: { orange: false, green: false, blue: false },
+  gemCost: undefined,
   decals: [],
   sigils: [],
   temple: 'nature', // Temple
