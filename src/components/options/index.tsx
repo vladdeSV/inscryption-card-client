@@ -30,6 +30,7 @@ export type Card = {
   golden: boolean,
   squid: boolean,
   fused: boolean,
+  smoke: boolean,
   portrait?: PortraitData
 }
 
@@ -52,6 +53,7 @@ export const templateCard: Card = {
   golden: false,
   squid: false,
   fused: false,
+  smoke: false,
   portrait: undefined
 }
 
@@ -72,7 +74,7 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
       { title: 'Portrait', element: <Portrait onValueChange={portrait => this.setState({ portrait }, this.onUpdate)} /> },
       { title: 'Tribes', element: <Tribe onValueChange={tribes => this.setState({ tribes }, this.onUpdate)} /> },
       { title: 'Temple', element: <Temple onValueChange={temple => this.setState({ temple }, this.onUpdate)} />, help: 'Card appearance might be affected in different card styles' },
-      { title: 'Other', element: <Flags onValueChange={(fused, golden, squid) => this.setState({ fused, golden, squid }, this.onUpdate)} /> },
+      { title: 'Other', element: <Flags onValueChange={(fused, golden, squid, smoke) => this.setState({ fused, golden, squid, smoke }, this.onUpdate)} /> },
     ]
 
     return (
