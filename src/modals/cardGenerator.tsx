@@ -42,6 +42,7 @@ const Credits = () => (
   <section id='credits' className='menu'>
     <p className='title'>Credits</p>
     <p>Original art from <a href="https://www.inscryption.com/"><i>Inscryption</i></a> by Daniel Mullins, redistrubuted with permission</p>
+    <p>Additional art courtesy of <a href="https://twitter.com/PixelProfligate">Pixel Profilgate</a></p>
     <p>Generator made by Vladimirs Nordholm</p>
   </section>
 )
