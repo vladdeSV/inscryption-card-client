@@ -64,12 +64,12 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
   }
 
   render() {
-    const sections: { title: string | JSX.Element, element: JSX.Element, help?: string }[] = [
+    const sections: { title: string | JSX.Element, element: JSX.Element, category?: string, help?: string }[] = [
       { title: 'Name', element: <Name onValueChange={name => this.setState({ name }, this.onUpdate)} /> },
       { title: 'Type', element: <CardType onValueChange={(rare, terrain, terrainLayout) => this.setState({ rare, terrain, terrainLayout }, () => this.props.onCardUpdate(this.state))} /> },
       { title: 'Health', element: <Health onValueChange={health => this.setState({ health }, this.onUpdate)} /> },
-      { title: 'Power', element: <Power onValueChange={(power, staticon) => this.setState({ power, staticon }, this.onUpdate)} /> },
-      { title: 'Cost', element: <Cost onValueChange={(blood, bone, energy, gems) => this.setState({ bloodCost: blood, boneCost: bone, energyCost: energy, gemCost: gems }, this.onUpdate)} /> },
+      { title: 'Power', category: 'power staticon', element: <Power onValueChange={(power, staticon) => this.setState({ power, staticon }, this.onUpdate)} /> },
+      { title: 'Cost', category: 'cost', element: <Cost onValueChange={(blood, bone, energy, gems) => this.setState({ bloodCost: blood, boneCost: bone, energyCost: energy, gemCost: gems }, this.onUpdate)} /> },
       { title: 'Abilities', element: <Sigil onValueChange={sigils => this.setState({ sigils }, this.onUpdate)} /> },
       { title: 'Portrait', element: <Portrait onValueChange={portrait => this.setState({ portrait }, this.onUpdate)} /> },
       { title: 'Tribes', element: <Tribe onValueChange={tribes => this.setState({ tribes }, this.onUpdate)} /> },
@@ -79,7 +79,7 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
 
     return (
       <section id='options'>
-        {sections.map((section, index) => (<Section key={index} title={section.title} help={section.help}>{section.element}</Section>))}
+        {sections.map((section, index) => (<Section category={section.category} key={index} title={section.title} help={section.help}>{section.element}</Section>))}
       </section>
     );
   }
