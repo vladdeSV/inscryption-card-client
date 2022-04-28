@@ -135,6 +135,16 @@ select {
   filter: drop-shadow(0 0 1rem rgba(150, 100, 100, 0.3));
 }
 
+#generator>section.card-options {
+  padding: 1rem 1rem;
+}
+
+#generator>section.card-options>section {
+  display: flex;
+  flex-flow: column;
+  row-gap: 0.5rem;
+}
+
 button.generate {
   transition: 0.2s;
   transition-timing-function: ease-out;
@@ -194,13 +204,19 @@ button.generate.fetching .generate {
 }
 
 section.menu {
-  padding: 0.2em 0;
+  padding: 0.5em 1rem;
+  box-sizing: border-box;
+}
+
+.menu.error {
+  outline: 1px solid #9e9eff;
+  border-radius: 1em;
 }
 
 .menu .title {
   font-size: 1.3em;
   font-weight: bold;
-  margin: 0.6em 0 0.5em 0;
+  margin: 0 0 0.5em 0;
 }
 
 .menu .checkbox>input {
