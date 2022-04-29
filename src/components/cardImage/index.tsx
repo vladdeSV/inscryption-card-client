@@ -46,12 +46,6 @@ export default class CardImage extends React.Component<Props, State> {
   }
 
   updateCardImage(card: Card, meta: Meta) {
-    const opts = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(card),
-    }
-
     const parameters = [
       meta.border ? 'border' : undefined,
       meta.scanline ? 'scanline' : undefined,
@@ -59,48 +53,52 @@ export default class CardImage extends React.Component<Props, State> {
     ].filter(x => x)
 
     // if host exists in env
-    const endpoint = (process.env.NODE_ENV === 'development' && process.env.REACT_APP_API) || 'https://1999199.vladde.me'
+    const endpoint = process.env.REACT_APP_API_ENDPOINT
+    const opts = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(card),
+    }
 
-    this.setState({ fetching: true, error: undefined }, () =>
-      fetch(`${endpoint}/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`, opts)
-        .then(res => {
-          if (!res.ok) {
+    const url = `${endpoint}/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`
 
-            let error: RequestErrorType = 'error'
-            if (res.status === 422) {
-              error = 'invalid'
-            }
+    this.setState({ fetching: true, error: undefined }, async () => {
+      try {
+        const res = await fetch(url, opts)
+        if (!res.ok) {
 
-            throw new FooError(error)
+          let error: RequestErrorType = 'error'
+          if (res.status === 422) {
+            error = 'invalid'
           }
 
-          return res
-        })
-        .then(res => res.blob())
-        .then(blobTo64)
-        .then(data => this.setState({ data }))
-        .catch(e => {
-          let err: RequestErrorType = 'error'
-          if (e instanceof FooError) {
-            err = e.type
-          }
+          throw new FooError(error, (await res.json()).category)
+        }
 
-          this.setState({
-            error: err
-          }, () => setTimeout(
-            () => this.setState({ error: undefined }), 5000))
-        })
-        .finally(() => this.setState({ fetching: false }))
-    )
+        const blob = await res.blob()
+        const data = await blobTo64(blob)
+
+        this.setState({ data })
+
+      } catch (e: unknown) {
+        let err: RequestErrorType = 'error'
+        if (e instanceof FooError) { err = e.type }
+        this.setState({ error: err }, () => setTimeout(() => this.setState({ error: undefined }), 5000))
+      } finally {
+        this.setState({ fetching: false })
+      }
+    })
   }
 
 }
 
 class FooError extends Error {
-  constructor(type: RequestErrorType) {
+  constructor(type: RequestErrorType, category?: string) {
     super(type);
     this.name = this.constructor.name
     this.type = type
+    this.category = category
   }
-  type: RequestErrorType;
+  type: RequestErrorType
+  category?: string
 }
