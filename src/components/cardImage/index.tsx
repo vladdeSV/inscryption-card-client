@@ -1,10 +1,9 @@
 import React from "react";
-import { blobTo64 } from "../../helpers";
+import { blobTo64, filterClassNames } from "../../helpers";
 import { Meta } from "../meta/cardGeneratorMeta";
 import { Card } from "../options";
 import GenerateButton from "./generateButton";
 
-type RequestErrorType = 'invalid' | 'error'
 type Props = {
   card: Card,
   meta: Meta,
@@ -12,7 +11,12 @@ type Props = {
 type State = {
   fetching: boolean,
   data?: string
-  error?: RequestErrorType
+  error?: {
+    type: 'network',
+  } | {
+    type: 'input',
+    category?: string,
+  }
 }
 
 export default class CardImage extends React.Component<Props, State> {
@@ -27,20 +31,21 @@ export default class CardImage extends React.Component<Props, State> {
   }
 
   render() {
-    const clss = ['generate']
+    const buttonClassNames = ['generate']
 
     if (this.state.fetching) {
-      clss.push('fetching')
+      buttonClassNames.push('fetching')
     }
 
-    if (this.state.error) {
-      clss.push(this.state.error)
-    }
+    // if (this.state.error) {
+    //   clss.push(this.state.error)
+    // }
 
     return (
       <>
         {this.state.data ? <img src={this.state.data} alt="custom card" /> : undefined}
-        <button className={clss.join(' ')} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate <GenerateButton /></button>
+        <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate <GenerateButton /></button>
+        {(this.state.error?.type === 'input' && this.state.error.category) ? undefined : undefined}
       </>
     )
   }
@@ -63,42 +68,37 @@ export default class CardImage extends React.Component<Props, State> {
     const url = `${endpoint}/api/card/${meta.act}/${parameters.length ? ('?' + parameters.join('&')) : ''}`
 
     this.setState({ fetching: true, error: undefined }, async () => {
-      try {
-        const res = await fetch(url, opts)
-        if (!res.ok) {
-
-          let error: RequestErrorType = 'error'
-          if (res.status === 422) {
-            error = 'invalid'
-          }
-
-          throw new FooError(error, (await res.json()).category)
-        }
-
+      const res = await fetch(url, opts)
+      if (res.ok) {
         const blob = await res.blob()
         const data = await blobTo64(blob)
 
-        this.setState({ data })
-
-      } catch (e: unknown) {
-        let err: RequestErrorType = 'error'
-        if (e instanceof FooError) { err = e.type }
-        this.setState({ error: err }, () => setTimeout(() => this.setState({ error: undefined }), 5000))
-      } finally {
-        this.setState({ fetching: false })
+        this.setState({ data, fetching: false, error: undefined })
+        return
       }
+
+      // error handling
+      const errorResponse = await res.json()
+      const category = errorResponse?.category
+
+      const error = res.status === 422
+        ? { type: 'input' as const, category }
+        : { type: 'network' as const }
+
+      this.setState(
+        { error: error, fetching: false },
+        //() => setTimeout(() => this.setState({ error: undefined }), 5000)
+      )
+
+      // } catch (e: unknown) {
+
+      // const doFetch = async () => {
+      //   try {
+
+      //   } finally {
+      //     this.setState({ fetching: false })
+      //   }
+      // }
     })
   }
-
-}
-
-class FooError extends Error {
-  constructor(type: RequestErrorType, category?: string) {
-    super(type);
-    this.name = this.constructor.name
-    this.type = type
-    this.category = category
-  }
-  type: RequestErrorType
-  category?: string
 }
