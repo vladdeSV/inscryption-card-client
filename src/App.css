@@ -164,12 +164,12 @@ button.generate.fetching {
   background: #fff2;
 }
 
-button.generate.error {
+button.generate.error.network {
   filter: drop-shadow(0 0 0.5em rgb(211, 69, 69, 0.5));
   background: rgb(211, 69, 69);
 }
 
-button.generate.invalid {
+button.generate.error.input {
   filter: drop-shadow(0 0 0.5em rgb(233, 186, 56, 0.5));
   background: rgb(233, 186, 56);
 }
