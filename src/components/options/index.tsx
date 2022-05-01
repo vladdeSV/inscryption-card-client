@@ -57,7 +57,7 @@ export const templateCard: Card = {
   portrait: undefined
 }
 
-export default class CardGeneratorOptions extends React.Component<{ onCardUpdate: (card: Card) => void }, Card> {
+export default class CardGeneratorOptions extends React.Component<{ onCardUpdate: (card: Card) => void, errorCategory: string | undefined }, Card> {
   constructor(props: any) {
     super(props)
     this.state = templateCard
@@ -79,7 +79,7 @@ export default class CardGeneratorOptions extends React.Component<{ onCardUpdate
 
     return (
       <section id='options'>
-        {sections.map((section, index) => (<Section category={section.category} key={index} title={section.title} help={section.help}>{section.element}</Section>))}
+        {sections.map((section, index) => (<Section category={section.category} key={index} title={section.title} help={section.help} error={!!(this.props.errorCategory && section.category?.includes(this.props.errorCategory))}>{section.element}</Section>))}
       </section>
     );
   }

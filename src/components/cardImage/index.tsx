@@ -7,6 +7,7 @@ import GenerateButton from "./generateButton";
 type Props = {
   card: Card,
   meta: Meta,
+  setErrorCategory: (category?: string) => void,
 }
 type State = {
   fetching: boolean,
@@ -37,15 +38,14 @@ export default class CardImage extends React.Component<Props, State> {
       buttonClassNames.push('fetching')
     }
 
-    // if (this.state.error) {
-    //   clss.push(this.state.error)
-    // }
+    if (this.state.error) {
+      buttonClassNames.push('error', this.state.error.type)
+    }
 
     return (
       <>
         {this.state.data ? <img src={this.state.data} alt="custom card" /> : undefined}
         <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate <GenerateButton /></button>
-        {(this.state.error?.type === 'input' && this.state.error.category) ? undefined : undefined}
       </>
     )
   }
@@ -74,6 +74,7 @@ export default class CardImage extends React.Component<Props, State> {
         const data = await blobTo64(blob)
 
         this.setState({ data, fetching: false, error: undefined })
+        this.props.setErrorCategory(undefined)
         return
       }
 
@@ -87,18 +88,10 @@ export default class CardImage extends React.Component<Props, State> {
 
       this.setState(
         { error: error, fetching: false },
-        //() => setTimeout(() => this.setState({ error: undefined }), 5000)
+        () => setTimeout(() => this.setState({ error: undefined }), 5000)
       )
 
-      // } catch (e: unknown) {
-
-      // const doFetch = async () => {
-      //   try {
-
-      //   } finally {
-      //     this.setState({ fetching: false })
-      //   }
-      // }
+      this.props.setErrorCategory(error?.category)
     })
   }
 }
