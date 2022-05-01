@@ -46,11 +46,23 @@ export default class CardImage extends React.Component<Props, State> {
       return <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate <GenerateButton /></button>
     }
 
-    const downloadButton = (data?: string) => {
-      if(!data) {
-        return <a className="image-download href='' disabled">Download</a>
+    const downloadButton = () => {
+      if (!this.state.data) {
+        return <button className="image-download" disabled={true}>Download</button>
       }
-      return <a className="image-download" download={`${this.props.card.name ? this.props.card.name.replaceAll(/\W/g, '-') : 'creature'}.png`} href={data}>Download</a>
+
+      const downloadImage = () => {
+        if (!this.state.data) {
+          return
+        }
+
+        const download = document.createElement("a"); //Create <a>
+        download.href = this.state.data
+        download.download = `${this.props.card.name ? this.props.card.name.replaceAll(/\W/g, '-') : 'creature'}.png`
+        download.click();
+      }
+
+      return <button className="image-download" disabled={false} onClick={downloadImage}>Download</button>
     }
 
     return (
@@ -58,7 +70,7 @@ export default class CardImage extends React.Component<Props, State> {
         {this.state.data ? <img src={this.state.data} alt="custom card" /> : undefined}
         <div className='button-menu'>
           {generateButton()}
-          {downloadButton(this.state.data)}
+          {downloadButton()}
         </div>
       </>
     )

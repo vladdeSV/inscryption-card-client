@@ -145,7 +145,13 @@ select {
   row-gap: 0.5rem;
 }
 
-button.generate, .image-download {
+.button-menu {
+  display: flex;
+  gap: 1em;
+}
+
+.button-menu > button {
+  cursor: pointer;
   transition: 0.2s;
   transition-timing-function: ease-out;
   padding: 0.3em 0.8em;
@@ -156,36 +162,36 @@ button.generate, .image-download {
   border: 1px solid transparent;
 }
 
-button.generate:active {
+.button-menu > button:active:not(:disabled) {
   background: none;
 }
 
-button.generate.fetching {
+.button-menu > button.fetching {
   background: #fff2;
 }
 
-button.generate.error.network {
+.button-menu > button.error.network {
   filter: drop-shadow(0 0 0.5em rgb(211, 69, 69, 0.5));
   background: rgb(211, 69, 69);
 }
 
-button.generate.error.input {
+.button-menu > button.error.input {
   filter: drop-shadow(0 0 0.5em rgb(233, 186, 56, 0.5));
   background: rgb(233, 186, 56);
 }
 
-button.generate:hover {
+.button-menu > button:hover:not(:disabled) {
   opacity: 0.7;
   border: 1px solid #ddf1;
 }
 
-button.generate span.generate {
+.button-menu > button span.generate {
   display: inline-block;
   height: 100%;
   box-sizing: border-box;
 }
 
-button.generate.fetching .generate {
+.button-menu > button.fetching .generate {
   animation-name: spin;
   animation-timing-function: ease-in-out;
   animation-duration: 1.2s;
@@ -201,11 +207,6 @@ button.generate.fetching .generate {
   to {
     transform: rotate(1turn);
   }
-}
-
-.button-menu {
-  display: flex;
-  gap: 1em;
 }
 
 section.menu {
@@ -373,6 +374,10 @@ input[type="text"] {
 .info-circle:hover>.info {
   transform: scale(1);
   opacity: 1;
+}
+
+button[disabled] {
+  cursor: default;
 }
 
 @media (max-width: 1000px) {
