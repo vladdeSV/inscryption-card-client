@@ -48,7 +48,7 @@ export default class CardImage extends React.Component<Props, State> {
 
     const downloadButton = (data?: string) => {
       if(!data) {
-        return <a className="image-download disabled">Download</a>
+        return <a className="image-download href='' disabled">Download</a>
       }
       return <a className="image-download" download={`${this.props.card.name ? this.props.card.name.replaceAll(/\W/g, '-') : 'creature'}.png`} href={data}>Download</a>
     }
