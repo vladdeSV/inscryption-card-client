@@ -145,7 +145,7 @@ select {
   row-gap: 0.5rem;
 }
 
-button.generate {
+button.generate, .image-download {
   transition: 0.2s;
   transition-timing-function: ease-out;
   padding: 0.3em 0.8em;
@@ -201,6 +201,11 @@ button.generate.fetching .generate {
   to {
     transform: rotate(1turn);
   }
+}
+
+.button-menu {
+  display: flex;
+  gap: 1em;
 }
 
 section.menu {

@@ -32,20 +32,34 @@ export default class CardImage extends React.Component<Props, State> {
   }
 
   render() {
-    const buttonClassNames = ['generate']
 
-    if (this.state.fetching) {
-      buttonClassNames.push('fetching')
+    const generateButton = () => {
+      const buttonClassNames = ['generate']
+
+      if (this.state.fetching) {
+        buttonClassNames.push('fetching')
+      }
+
+      if (this.state.error) {
+        buttonClassNames.push('error', this.state.error.type)
+      }
+      return <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate <GenerateButton /></button>
     }
 
-    if (this.state.error) {
-      buttonClassNames.push('error', this.state.error.type)
+    const downloadButton = (data?: string) => {
+      if(!data) {
+        return <a className="image-download disabled">Download</a>
+      }
+      return <a className="image-download" download={`${this.props.card.name ? this.props.card.name.replaceAll(/\W/g, '-') : 'creature'}.png`} href={data}>Download</a>
     }
 
     return (
       <>
         {this.state.data ? <img src={this.state.data} alt="custom card" /> : undefined}
-        <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate <GenerateButton /></button>
+        <div className='button-menu'>
+          {generateButton()}
+          {downloadButton(this.state.data)}
+        </div>
       </>
     )
   }
