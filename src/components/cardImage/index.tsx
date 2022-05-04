@@ -80,7 +80,7 @@ export default class CardImage extends React.Component<Props, State> {
     const parameters = [
       meta.border ? 'border' : undefined,
       meta.scanline ? 'scanline' : undefined,
-      meta.locale ? ('locale=' + meta.locale) : undefined,
+      meta.locale ? `locale=${meta.locale}` : undefined,
     ].filter(x => x)
 
     // if host exists in env
