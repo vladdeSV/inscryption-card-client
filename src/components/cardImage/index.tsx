@@ -108,7 +108,7 @@ export default class CardImage extends React.Component<Props, State> {
       const errorResponse = await res.json()
       const category = errorResponse?.category
 
-      const error = res.status === 422
+      const error = (res.status === 422)
         ? { type: 'input' as const, category }
         : { type: 'network' as const }
 
