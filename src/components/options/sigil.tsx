@@ -93,7 +93,7 @@ export default class SigilSelect extends React.Component<{ onValueChange: (sigil
       { id: 'loot', name: 'Looter' },
       { id: 'activatedsacrificedrawcards', name: 'True Scholar' },
       { id: 'activatedstatsupenergy', name: 'Stimulate' },
-      { id: 'activatedheal', name: 'Marrow Sucker' },
+      { id: 'activatedheal', name: 'Marrow Sucker', disabled: true },
       { id: 'debuffenemy', name: 'Stinky' },
       { id: 'cellbuffself', name: 'Buff When Powered' },
       { id: 'celldrawrandomcardondeath', name: 'Gift When Powered' },
