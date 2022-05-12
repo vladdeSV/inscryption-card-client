@@ -7,7 +7,7 @@ export default class SigilSelect extends React.Component<{ onValueChange: (sigil
   }
 
   render() {
-    const sigils: { id: string | undefined, name: string }[] = [
+    const sigils: { id: string | undefined, name: string, disabled?: boolean }[] = [
       { id: '', name: '-' },
 
       { id: 'madeofstone', name: 'Made of Stone' },
@@ -101,15 +101,15 @@ export default class SigilSelect extends React.Component<{ onValueChange: (sigil
       { id: 'activatedenergytobones', name: 'Bonehorn' },
       { id: 'movebeside', name: 'Clinger' },
       { id: 'submergesquid', name: 'Waterborne' },
-      { id: 'bloodguzzler', name: 'Blood Guzzler' },
-      { id: 'haunter', name: 'Haunter' },
-      { id: 'explodingcorpse', name: 'Exploding Corpse' },
-      { id: 'bloodymary', name: 'Apparition' },
-      { id: 'virtualreality', name: 'Virtual Realist' },
-      { id: 'edaxiohead', name: 'Head of Edaxio' },
-      { id: 'edaxioarms', name: 'Arms of Edaxio' },
-      { id: 'edaxiolegs', name: 'Legs of Edaxio' },
-      { id: 'edaxiotorso', name: 'Torso of Edaxio' },
+      { id: 'bloodguzzler', name: 'Blood Guzzler', disabled: true },
+      { id: 'haunter', name: 'Haunter', disabled: true },
+      { id: 'explodingcorpse', name: 'Exploding Corpse', disabled: true },
+      { id: 'bloodymary', name: 'Apparition', disabled: false },
+      { id: 'virtualreality', name: 'Virtual Realist', disabled: false },
+      { id: 'edaxiohead', name: 'Head of Edaxio', disabled: false },
+      { id: 'edaxioarms', name: 'Arms of Edaxio', disabled: false },
+      { id: 'edaxiolegs', name: 'Legs of Edaxio', disabled: false },
+      { id: 'edaxiotorso', name: 'Torso of Edaxio', disabled: false },
     ]
 
     const onSigilChange = (n: number, sigil: string | undefined) => {
@@ -123,7 +123,7 @@ export default class SigilSelect extends React.Component<{ onValueChange: (sigil
 
     const sigilSelect = (n: number) => (
       <select onChange={(e) => onSigilChange(n, e.target.value)}>
-        {sigils.map(sigil => (<option key={`${n}-${sigil.id}`} value={sigil.id}>{sigil.name}</option>))}
+        {sigils.map(sigil => (<option key={`${n}-${sigil.id}`} value={sigil.id} disabled={sigil.disabled ?? false}>{sigil.name}</option>))}
       </select>
     )
 
