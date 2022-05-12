@@ -104,12 +104,12 @@ export default class SigilSelect extends React.Component<{ onValueChange: (sigil
       { id: 'bloodguzzler', name: 'Blood Guzzler', disabled: true },
       { id: 'haunter', name: 'Haunter', disabled: true },
       { id: 'explodingcorpse', name: 'Exploding Corpse', disabled: true },
-      { id: 'bloodymary', name: 'Apparition', disabled: false },
-      { id: 'virtualreality', name: 'Virtual Realist', disabled: false },
-      { id: 'edaxiohead', name: 'Head of Edaxio', disabled: false },
-      { id: 'edaxioarms', name: 'Arms of Edaxio', disabled: false },
-      { id: 'edaxiolegs', name: 'Legs of Edaxio', disabled: false },
-      { id: 'edaxiotorso', name: 'Torso of Edaxio', disabled: false },
+      { id: 'bloodymary', name: 'Apparition', disabled: true },
+      { id: 'virtualreality', name: 'Virtual Realist', disabled: true },
+      { id: 'edaxiohead', name: 'Head of Edaxio', disabled: true },
+      { id: 'edaxioarms', name: 'Arms of Edaxio', disabled: true },
+      { id: 'edaxiolegs', name: 'Legs of Edaxio', disabled: true },
+      { id: 'edaxiotorso', name: 'Torso of Edaxio', disabled: true },
     ]
 
     const onSigilChange = (n: number, sigil: string | undefined) => {
