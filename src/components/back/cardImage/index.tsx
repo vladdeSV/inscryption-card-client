@@ -1,17 +1,15 @@
 import React from "react";
 import { blobTo64, filterClassNames } from "../../../helpers";
 import { Meta } from "../../meta/cardGeneratorMeta";
-import { Card } from "../options";
 import GenerateButton from "./generateButton";
 
 type Props = {
-  card: Card,
-  meta: Meta,
+  meta: Omit<Meta, 'locale'>,
   setErrorCategory: (category?: string) => void,
 }
 type State = {
   fetching: boolean,
-  data?: string
+  data?: string,
   error?: {
     type: 'network',
   } | {
@@ -43,7 +41,7 @@ export default class CardImage extends React.Component<Props, State> {
       if (this.state.error) {
         buttonClassNames.push('error', this.state.error.type)
       }
-      return <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.card, this.props.meta)}>Generate <GenerateButton /></button>
+      return <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage('common', this.props.meta)}>Generate <GenerateButton /></button>
     }
 
     const downloadButton = () => {
@@ -58,7 +56,7 @@ export default class CardImage extends React.Component<Props, State> {
 
         const download = document.createElement("a"); //Create <a>
         download.href = this.state.data
-        download.download = `${this.props.card.name ? this.props.card.name.replaceAll(/\W/g, '-') : 'creature'}.png`
+        download.download = `back.png`
         download.click();
       }
 
@@ -76,11 +74,10 @@ export default class CardImage extends React.Component<Props, State> {
     )
   }
 
-  updateCardImage(card: Card, meta: Meta) {
+  updateCardImage(type: string, meta: Omit<Meta, 'locale'>) {
     const parameters = [
       meta.border ? 'border' : undefined,
       meta.scanline ? 'scanline' : undefined,
-      meta.locale ? `locale=${meta.locale}` : undefined,
     ].filter(x => x)
 
     // if host exists in env
@@ -88,10 +85,10 @@ export default class CardImage extends React.Component<Props, State> {
     const opts = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(card),
+      body: JSON.stringify({ type: type }),
     }
 
-    const url = `${endpoint}/api/card/${meta.act}/front${parameters.length ? ('?' + parameters.join('&')) : ''}`
+    const url = `${endpoint}/api/card/${meta.act}/back${parameters.length ? ('?' + parameters.join('&')) : ''}`
 
     this.setState({ fetching: true, error: undefined }, async () => {
       const res = await fetch(url, opts)

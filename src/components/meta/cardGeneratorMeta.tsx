@@ -1,7 +1,7 @@
 import React from 'react'
-import CheckboxGroup from '../../checkboxGroup'
-import Section from '../../menuSection'
-import SelectOptions from '../../selectOptions'
+import CheckboxGroup from '../checkboxGroup'
+import Section from '../menuSection'
+import SelectOptions from '../selectOptions'
 
 export type Locale = 'default' | 'jp' | 'ko' | 'zh-cn' | 'zh-tw'
 export type Meta = {
@@ -10,7 +10,7 @@ export type Meta = {
   scanline: boolean,
   locale: Locale,
 }
-type Props = { onMetaUpdate: (meta: Meta) => void }
+type Props = { onMetaUpdate: (meta: Meta) => void, useLocale?: boolean }
 
 export default class CardGeneratorMeta extends React.Component<Props, Meta> {
   constructor(props: Props) {
@@ -45,19 +45,20 @@ export default class CardGeneratorMeta extends React.Component<Props, Meta> {
             ]}
           />
         </Section>
-        <Section title='Locale' help='For languages with non-latin characters like Korean, Japanese, and Chinese'>
-          <SelectOptions
-            uniqueName='locale'
-            onChange={locale => this.setState({ locale: locale }, this.onUpdate)}
-            options={[
-              { value: 'default', label: 'Default' }, // (en, pt-br, fr, de, it, ru, es, tk)
-              { value: 'jp', label: '日本語' }, // (jp)
-              { value: 'ko', label: '한국어' }, // (ko)
-              { value: 'zh-cn', label: '中国文' }, // (zh-cn)
-              { value: 'zh-tw', label: '中國文' }, // (zh-tw)
-            ]}
-          />
-        </Section>
+        {this.props.useLocale ?? true ? (
+          <Section title='Locale' help='For languages with non-latin characters like Korean, Japanese, and Chinese'>
+            <SelectOptions
+              uniqueName='locale'
+              onChange={locale => this.setState({ locale: locale }, this.onUpdate)}
+              options={[
+                { value: 'default', label: 'Default' }, // (en, pt-br, fr, de, it, ru, es, tk)
+                { value: 'jp', label: '日本語' }, // (jp)
+                { value: 'ko', label: '한국어' }, // (ko)
+                { value: 'zh-cn', label: '中国文' }, // (zh-cn)
+                { value: 'zh-tw', label: '中國文' }, // (zh-tw)
+              ]}
+            />
+          </Section>) : undefined}
         <Section title='Misc.'>
           <CheckboxGroup
             options={[

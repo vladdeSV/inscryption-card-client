@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import CardGenerator from './modals/cardGenerator';
+import FrontCardGenerator from './modals/cardGenerator';
+import BackCardGenerator from './modals/backCardGenerator';
 
 class App extends React.Component {
 
@@ -9,7 +10,8 @@ class App extends React.Component {
     return (
       <main className='app'>
         <h1>Inscryption card generator</h1>
-        <CardGenerator />
+        <FrontCardGenerator />
+        <BackCardGenerator />
       </main>
     );
   }
