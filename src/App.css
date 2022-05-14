@@ -101,7 +101,7 @@ select {
   margin: 0 0 1.2em 0;
 }
 
-#generator {
+.generator {
   display: flex;
   background-color: hsl(212deg, 21%, 10%);
   width: 100%;
@@ -114,13 +114,13 @@ select {
   border-top: 1px solid #fff2;
 }
 
-#generator>section {
+.generator>section {
   flex: 1;
   overflow: auto;
   padding: 0.6em 1.5em;
 }
 
-#generator>section.card-display {
+.generator>section.card-display {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -129,17 +129,17 @@ select {
   box-sizing: border-box;
 }
 
-#generator>section.card-display>img {
+.generator>section.card-display>img {
   height: 450px;
   padding: 1em;
   filter: drop-shadow(0 0 1rem rgba(150, 100, 100, 0.3));
 }
 
-#generator>section.card-options {
+.generator>section.card-options {
   padding: 1rem 1rem;
 }
 
-#generator>section.card-options>section {
+.generator>section.card-options>section {
   display: flex;
   flex-flow: column;
   row-gap: 0.5rem;
@@ -150,7 +150,7 @@ select {
   gap: 1em;
 }
 
-.button-menu > button {
+.button-menu>button {
   cursor: pointer;
   transition: 0.2s;
   transition-timing-function: ease-out;
@@ -162,36 +162,36 @@ select {
   border: 1px solid transparent;
 }
 
-.button-menu > button:active:not(:disabled) {
+.button-menu>button:active:not(:disabled) {
   background: none;
 }
 
-.button-menu > button.fetching {
+.button-menu>button.fetching {
   background: #fff2;
 }
 
-.button-menu > button.error.network {
+.button-menu>button.error.network {
   filter: drop-shadow(0 0 0.5em rgb(211, 69, 69, 0.5));
   background: rgb(211, 69, 69);
 }
 
-.button-menu > button.error.input {
+.button-menu>button.error.input {
   filter: drop-shadow(0 0 0.5em rgb(233, 186, 56, 0.5));
   background: rgb(233, 186, 56);
 }
 
-.button-menu > button:hover:not(:disabled) {
+.button-menu>button:hover:not(:disabled) {
   opacity: 0.7;
   border: 1px solid #ddf1;
 }
 
-.button-menu > button span.generate {
+.button-menu>button span.generate {
   display: inline-block;
   height: 100%;
   box-sizing: border-box;
 }
 
-.button-menu > button.fetching .generate {
+.button-menu>button.fetching .generate {
   animation-name: spin;
   animation-timing-function: ease-in-out;
   animation-duration: 1.2s;
@@ -389,7 +389,7 @@ button[disabled] {
     display: none;
   }
 
-  #generator {
+  .generator {
     flex-direction: column;
     max-height: unset;
     filter: none;
@@ -397,7 +397,7 @@ button[disabled] {
     border: none;
   }
 
-  #generator>section.card-display {
+  .generator>section.card-display {
     min-height: 600px;
   }
 }
