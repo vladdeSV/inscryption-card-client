@@ -93,12 +93,13 @@ select {
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  height: 100vh;
+  margin-top: 15vh;
+  gap: 3rem;
 }
 
 .app>h1 {
   font-size: 2.2em;
-  margin: 0 0 1.2em 0;
+  margin: 0;
 }
 
 .generator {
@@ -382,7 +383,7 @@ button[disabled] {
 
 @media (max-width: 1000px) {
   .app {
-    height: unset;
+    margin-top: 0;
   }
 
   .app>h1 {
