@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectOptions from '../../selectOptions';
+import SelectOptions from '../../../selectOptions';
 
 export type Deathcard = {
   head: 'chief' | 'enchantress' | 'gravedigger' | 'prospector' | 'robot' | 'settlerman' | 'settlerwoman' | 'wildling',

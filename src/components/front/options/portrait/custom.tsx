@@ -1,5 +1,5 @@
 import React from "react";
-import FileUpload from "../../fileUpload";
+import FileUpload from "../../../fileUpload";
 
 export type CustomPortrait = {
   common?: string,

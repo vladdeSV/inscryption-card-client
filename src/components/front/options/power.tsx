@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectOptions from '../selectOptions';
+import SelectOptions from '../../selectOptions';
 
 export type StatIcon = 'ants' | 'cardsinhand' | 'mirror' | 'bell' | 'greengems'
 

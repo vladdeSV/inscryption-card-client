@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckboxGroup from '../checkboxGroup';
+import CheckboxGroup from '../../checkboxGroup';
 
 export type Tribe = 'bird' | 'canine' | 'hooved' | 'reptile' | 'insect'
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { blobTo64, filterClassNames } from "../../helpers";
+import { blobTo64, filterClassNames } from "../../../helpers";
 import { Meta } from "../meta/cardGeneratorMeta";
 import { Card } from "../options";
 import GenerateButton from "./generateButton";

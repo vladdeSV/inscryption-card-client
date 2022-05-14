@@ -6,7 +6,7 @@ import CardType from './cardType';
 import Tribe, { Tribe as TribeType } from './tribe';
 import Cost from './cost';
 import Sigil from './sigil';
-import Section from '../menuSection';
+import Section from '../../menuSection';
 import Temple from './temple';
 import Portrait, { PortraitData } from './portrait';
 import Flags from './flags';

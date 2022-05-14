@@ -1,7 +1,7 @@
 import React from 'react'
-import CheckboxGroup from '../checkboxGroup'
-import Section from '../menuSection'
-import SelectOptions from '../selectOptions'
+import CheckboxGroup from '../../checkboxGroup'
+import Section from '../../menuSection'
+import SelectOptions from '../../selectOptions'
 
 export type Locale = 'default' | 'jp' | 'ko' | 'zh-cn' | 'zh-tw'
 export type Meta = {

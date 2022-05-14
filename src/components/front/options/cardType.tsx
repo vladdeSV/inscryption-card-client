@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectOptions from '../selectOptions';
+import SelectOptions from '../../selectOptions';
 
 export type CardType = 'common' | 'rare' | 'terrain'
 type Props = { onValueChange: (rare: boolean, terrain: boolean, terrainLayout: boolean) => void }

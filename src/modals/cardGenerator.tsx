@@ -1,7 +1,7 @@
 import React from 'react';
-import CardGeneratorMeta, { Meta } from '../components/meta/cardGeneratorMeta';
-import CardGeneratorOptions, { Card, templateCard } from '../components/options';
-import CardImage from '../components/cardImage'
+import CardGeneratorMeta, { Meta } from '../components/front/meta/cardGeneratorMeta';
+import CardGeneratorOptions, { Card, templateCard } from '../components/front/options';
+import CardImage from '../components/front/cardImage'
 
 export default class CardGenerator extends React.Component<{}, { errorCategory?: string, card: Card, meta: Meta }> {
 

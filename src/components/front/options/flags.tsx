@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckboxGroup from '../checkboxGroup';
+import CheckboxGroup from '../../checkboxGroup';
 
 type Props = { onValueChange: (fused: boolean, golden: boolean, squid: boolean, smoke: boolean) => void }
 type State = {

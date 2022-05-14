@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectOptions from '../selectOptions';
+import SelectOptions from '../../selectOptions';
 
 export type TempleType = 'nature' | 'tech' | 'undead' | 'wizard'
 type Props = { onValueChange: (temple: TempleType) => void }

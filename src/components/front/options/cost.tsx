@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckboxGroup from '../checkboxGroup';
+import CheckboxGroup from '../../checkboxGroup';
 
 type CostData = {
   bloodCost: number, // 0 - 4
