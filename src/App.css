@@ -74,6 +74,11 @@ select {
   -webkit-appearance: none;
 }
 
+.menu h1.title {
+  font-size: 2rem;
+  margin: 0.4em 0;
+}
+
 #update-image {
   margin: 1rem 0 0 0;
 }

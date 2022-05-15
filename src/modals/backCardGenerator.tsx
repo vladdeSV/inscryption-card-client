@@ -33,6 +33,9 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
           })} />
         </section>
         <section className='card-options'>
+          <section className='menu'>
+            <h1 className='title'>Backside</h1>
+          </section>
           {/* <section>
             <Section title='Type'>
               <SelectOptions
