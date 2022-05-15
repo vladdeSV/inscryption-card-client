@@ -399,6 +399,7 @@ button[disabled] {
   .generator {
     flex-direction: column;
     max-height: unset;
+    height: unset;
     filter: none;
     border-radius: 0;
     border: none;
