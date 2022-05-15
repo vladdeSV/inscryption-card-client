@@ -11,6 +11,10 @@ class App extends React.Component {
       <main className='app'>
         <h1>Inscryption card generator</h1>
         <FrontCardGenerator />
+        <br />
+        <br />
+        <br />
+        <br />
         <BackCardGenerator />
       </main>
     );
