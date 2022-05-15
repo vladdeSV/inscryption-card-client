@@ -1,8 +1,6 @@
 import React from 'react';
 import CardGeneratorMeta, { Meta } from '../components/meta/cardGeneratorMeta';
 import CardImage from '../components/back/cardImage'
-import Section from '../components/menuSection'
-import SelectOptions from '../components/selectOptions';
 
 export default class CardGenerator extends React.Component<{}, { errorCategory?: string, meta: Omit<Meta, 'locale'>, type: 'common' }> {
 
