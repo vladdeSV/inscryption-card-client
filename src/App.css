@@ -169,7 +169,7 @@ select {
   row-gap: 0.5rem;
 }
 
-.foo {
+nav.foo {
   display: flex;
   gap: 0.4em;
   padding: 0.2em;
@@ -177,7 +177,7 @@ select {
   background-color: #fff1;
 }
 
-.foo>button {
+nav.foo>button {
   cursor: pointer;
   font-size: 0.9em;
   border: none;
@@ -187,11 +187,11 @@ select {
   padding: 0.2em 0.4em;
 }
 
-.foo>button:hover {
+nav.foo>button:hover {
   background-color: #fff2;
 }
 
-.foo>button.selected {
+nav.foo>button.selected {
   background-color: #ffffff25;
 }
 
@@ -433,6 +433,7 @@ button[disabled] {
 @media (max-width: 1000px) {
   .app {
     margin-top: 0;
+    gap: unset;
   }
 
   .app>h1 {
@@ -445,6 +446,12 @@ button[disabled] {
     filter: none;
     border-radius: 0;
     border: none;
+  }
+
+  nav.foo {
+    font-size: 1.1em;
+    padding: 0.5em;
+    margin: 2em;
   }
 
   .generator>article {
