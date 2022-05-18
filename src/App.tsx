@@ -34,7 +34,7 @@ class SlideModal extends React.Component<ModalProps, ModalState> {
         </style>
         <nav className='foo'>
           {this.props.options.map((option, index) => (
-            <button className={'modalbutton ' + (this.state.selectedIndex === index ? 'selected' : '')} key={index} onClick={() => this.setState({ selectedIndex: index })}>{option}</button>
+            <button className={(this.state.selectedIndex === index ? 'selected' : '')} key={index} onClick={() => this.setState({ selectedIndex: index })}>{option}</button>
           ))}
         </nav>
         <main className='generator'>
