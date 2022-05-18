@@ -134,8 +134,8 @@ select {
 }
 
 .generator>article {
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in-out;
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 
 .generator>article>section {

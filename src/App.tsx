@@ -8,7 +8,7 @@ type ModalProps = {
 type ModalState = {
   selectedIndex: number
 }
-class GeneratorModal extends React.Component<ModalProps, ModalState> {
+class SlideModal extends React.Component<ModalProps, ModalState> {
   // constuctor
   constructor(props: {}) {
     super(props)
@@ -17,11 +17,24 @@ class GeneratorModal extends React.Component<ModalProps, ModalState> {
     }
   }
 
+  movePane(way: 'prev' | 'next') {
+    this.setState(state => ({ selectedIndex: state.selectedIndex + (way === 'next' ? 1 : -1) }))
+  }
+
   render() {
     return (
-      <main className='generator'>
-        {this.props.children}
-      </main>
+      <>
+        <style>
+          {`.generator>article { transform: translate(${-this.state.selectedIndex * 100}%); }`}
+        </style>
+        <div>
+          <button onClick={() => this.setState(state => ({ selectedIndex: state.selectedIndex - 1 }))}>dec</button>
+          <button onClick={() => this.setState(state => ({ selectedIndex: state.selectedIndex + 1 }))}>inc</button>
+        </div>
+        <main className='generator'>
+          {this.props.children}
+        </main>
+      </>
     )
   }
 }
@@ -33,16 +46,9 @@ class App extends React.Component {
     return (
       <main className='app'>
         <h1>Inscryption card generator</h1>
-        <style>
-          {`
-            .generator>article {
-              transform: translate(-${0 * 100}%);
-            }
-          `}
-        </style>
-        <GeneratorModal>
+        <SlideModal>
           <FrontCardGenerator />
-        </GeneratorModal>
+        </SlideModal>
       </main>
     );
   }
