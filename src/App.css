@@ -169,6 +169,32 @@ select {
   row-gap: 0.5rem;
 }
 
+.foo {
+  display: flex;
+  gap: 0.4em;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  background-color: #fff1;
+}
+
+.foo>button {
+  cursor: pointer;
+  font-size: 0.9em;
+  border: none;
+  background-color: #fff0;
+  transition: 0.2s;
+  border-radius: 0.4em;
+  padding: 0.2em 0.4em;
+}
+
+.foo>button:hover {
+  background-color: #fff2;
+}
+
+.foo>button.selected {
+  background-color: #ffffff25;
+}
+
 .button-menu {
   display: flex;
   gap: 1em;

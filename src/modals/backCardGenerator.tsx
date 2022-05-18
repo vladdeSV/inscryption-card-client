@@ -19,7 +19,7 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
 
   render() {
     return (
-      <div className='generator'>
+      <article>
         <section className='card-display'>
           <CardImage meta={this.state.meta} setErrorCategory={category => this.setState({ errorCategory: category }, () => {
             if (!category) {
@@ -48,7 +48,7 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
           <hr /> */}
           <CardGeneratorMeta onMetaUpdate={meta => this.setState({ meta })} useLocale={false} />
         </section>
-      </div>
+      </article>
     );
   }
 }
