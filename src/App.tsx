@@ -3,6 +3,29 @@ import './App.css';
 import FrontCardGenerator from './modals/cardGenerator';
 import BackCardGenerator from './modals/backCardGenerator';
 
+type ModalProps = {
+}
+type ModalState = {
+  selectedIndex: number
+}
+class GeneratorModal extends React.Component<ModalProps, ModalState> {
+  // constuctor
+  constructor(props: {}) {
+    super(props)
+    this.state = {
+      selectedIndex: 0,
+    }
+  }
+
+  render() {
+    return (
+      <main className='generator'>
+        {this.props.children}
+      </main>
+    )
+  }
+}
+
 class App extends React.Component {
 
   render() {
@@ -10,12 +33,16 @@ class App extends React.Component {
     return (
       <main className='app'>
         <h1>Inscryption card generator</h1>
-        <FrontCardGenerator />
-        <br />
-        <br />
-        <br />
-        <br />
-        <BackCardGenerator />
+        <style>
+          {`
+            .generator>article {
+              transform: translate(-${0 * 100}%);
+            }
+          `}
+        </style>
+        <GeneratorModal>
+          <FrontCardGenerator />
+        </GeneratorModal>
       </main>
     );
   }

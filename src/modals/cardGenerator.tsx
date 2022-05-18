@@ -21,7 +21,7 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
 
   render() {
     return (
-      <div className='generator'>
+      <article>
         <section className='card-display'>
           <CardImage card={this.state.card} meta={this.state.meta} setErrorCategory={category => this.setState({ errorCategory: category }, () => {
             if (!category) {
@@ -43,7 +43,7 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
           <Credits />
           <Supporters />
         </section>
-      </div>
+      </article>
     );
   }
 }
