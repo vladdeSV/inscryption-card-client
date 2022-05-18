@@ -2,20 +2,17 @@ import React from 'react';
 import './App.css';
 import FrontCardGenerator from './modals/cardGenerator';
 import BackCardGenerator from './modals/backCardGenerator';
+import { SlideModal } from './modals/slide';
 
 class App extends React.Component {
-
   render() {
-
     return (
       <main className='app'>
         <h1>Inscryption card generator</h1>
-        <FrontCardGenerator />
-        <br />
-        <br />
-        <br />
-        <br />
-        <BackCardGenerator />
+        <SlideModal options={['Frontside', 'Backside']}>
+          <FrontCardGenerator />
+          <BackCardGenerator />
+        </SlideModal>
       </main>
     );
   }
