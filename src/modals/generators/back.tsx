@@ -7,7 +7,7 @@ import SelectOptions from '../../components/selectOptions'
 type State = {
   errorCategory?: string,
   meta: Omit<Meta, 'locale'>,
-  leshy: 'common' | 'submerged' | 'death' | 'squirrel' | 'bee'
+  leshy: 'common' | 'submerged' | 'deathcard' | 'squirrel' | 'bee'
   gbc: 'common' | 'submerged'
   pixelProfilgate: 'common'
 }
@@ -41,7 +41,7 @@ export default class BackCardGenerator extends React.Component<{}, State> {
               options={[
                 { value: 'common', label: 'Default' },
                 { value: 'submerged', label: 'Submerged' },
-                { value: 'death', label: 'Death' },
+                { value: 'deathcard', label: 'Death' },
                 { value: 'squirrel', label: 'Squirrel' },
                 { value: 'bee', label: 'Bee' },
               ]}
@@ -73,6 +73,14 @@ export default class BackCardGenerator extends React.Component<{}, State> {
             />
           </Section>
         }
+      }
+    }
+
+    const data = (): string => {
+      switch (this.state.meta.act) {
+        case 'leshy': return this.state.leshy
+        case 'gbc': return this.state.gbc
+        case 'pixelprofilgate': return this.state.pixelProfilgate
       }
     }
 

@@ -5,6 +5,7 @@ import GenerateSpinner from "./generateButton";
 
 type Props = {
   meta: Omit<Meta, 'locale'>,
+  kind: string,
   setErrorCategory: (category?: string) => void,
 }
 type State = {
@@ -80,15 +81,12 @@ export default class BackCardImage extends React.Component<Props, State> {
       meta.scanline ? 'scanline' : undefined,
     ].filter(x => x)
 
-    // if host exists in env
     const endpoint = process.env.REACT_APP_API_ENDPOINT
     const opts = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: type }),
+      method: 'GET',
     }
 
-    const url = `${endpoint}/api/card/${meta.act}/back${parameters.length ? ('?' + parameters.join('&')) : ''}`
+    const url = `${endpoint}/api/card/${meta.act}/backs/${type}${parameters.length ? ('?' + parameters.join('&')) : ''}`
 
     this.setState({ fetching: true, error: undefined }, async () => {
       const res = await fetch(url, opts)
@@ -98,6 +96,14 @@ export default class BackCardImage extends React.Component<Props, State> {
 
         this.setState({ data, fetching: false, error: undefined })
         this.props.setErrorCategory(undefined)
+        return
+      }
+
+      if (res.status === 404) {
+        this.setState(
+          { error: { type: 'input' }, fetching: false },
+          () => setTimeout(() => this.setState({ error: undefined }), 5000)
+        )
         return
       }
 
