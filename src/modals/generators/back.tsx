@@ -1,6 +1,6 @@
 import React from 'react';
-import CardGeneratorMeta, { Meta } from '../../components/meta/cardGeneratorMeta';
-import CardImage from '../../components/back/cardImage'
+import CardGeneratorMeta, { Meta } from '../../components/meta/cardGeneratorMeta'
+import BackCardImage from '../../components/back/cardImage'
 import Section from '../../components/menuSection'
 import SelectOptions from '../../components/selectOptions'
 
@@ -11,7 +11,7 @@ type State = {
   gbc: 'common' | 'submerged'
   pixelProfilgate: 'common'
 }
-export default class CardGenerator extends React.Component<{}, State> {
+export default class BackCardGenerator extends React.Component<{}, State> {
 
   constructor(props: {}) {
     super(props)
@@ -79,7 +79,7 @@ export default class CardGenerator extends React.Component<{}, State> {
     return (
       <article>
         <section className='card-display'>
-          <CardImage meta={this.state.meta} setErrorCategory={() => { }} />
+          <BackCardImage meta={this.state.meta} kind={data()} setErrorCategory={() => { }} />
         </section>
         <section className='card-options'>
           <section>

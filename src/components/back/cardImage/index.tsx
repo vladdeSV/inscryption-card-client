@@ -1,7 +1,7 @@
 import React from "react";
 import { blobTo64, filterClassNames } from "../../../helpers";
 import { Meta } from "../../meta/cardGeneratorMeta";
-import GenerateButton from "./generateButton";
+import GenerateSpinner from "./generateButton";
 
 type Props = {
   meta: Omit<Meta, 'locale'>,
@@ -18,7 +18,7 @@ type State = {
   }
 }
 
-export default class CardImage extends React.Component<Props, State> {
+export default class BackCardImage extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
@@ -31,7 +31,7 @@ export default class CardImage extends React.Component<Props, State> {
 
   render() {
 
-    const generateButton = () => {
+    const generateSpinner = () => {
       const buttonClassNames = ['generate']
 
       if (this.state.fetching) {
@@ -41,7 +41,7 @@ export default class CardImage extends React.Component<Props, State> {
       if (this.state.error) {
         buttonClassNames.push('error', this.state.error.type)
       }
-      return <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage('common', this.props.meta)}>Generate <GenerateButton /></button>
+      return <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.kind, this.props.meta)}>Generate <GenerateSpinner /></button>
     }
 
     const downloadButton = () => {
@@ -65,9 +65,9 @@ export default class CardImage extends React.Component<Props, State> {
 
     return (
       <>
-        {this.state.data ? <img src={this.state.data} alt="custom card" /> : undefined}
+        {this.state.data ? <img src={this.state.data} alt="custom back card" /> : undefined}
         <div className='button-menu'>
-          {generateButton()}
+          {generateSpinner()}
           {downloadButton()}
         </div>
       </>
