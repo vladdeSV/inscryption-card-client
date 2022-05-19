@@ -33,9 +33,6 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
           })} />
         </section>
         <section className='card-options'>
-          <section className='menu'>
-            <h1 className='title'>Frontside</h1>
-          </section>
           <CardGeneratorOptions onCardUpdate={card => this.setState({ card })} errorCategory={this.state.errorCategory} />
           <hr />
           <CardGeneratorMeta onMetaUpdate={meta => this.setState({ meta })} />
