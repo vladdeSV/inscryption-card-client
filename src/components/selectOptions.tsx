@@ -19,6 +19,7 @@ type Foo<T> = {
 type Props<T> = {
   uniqueName: string,
   disabled?: boolean,
+  value?: T,
   onChange: (value: T) => void
 } & Foo<T>
 
@@ -27,7 +28,7 @@ export default class SelectOptions<T extends string> extends React.Component<Pro
     const option = (opt: Option<T>, index: number) => <option key={index} disabled={!(opt.enabled ?? true)} value={opt.value}>{opt.label}</option>
 
     return (
-      <select name={this.props.uniqueName} disabled={this.props.disabled} onChange={e => this.props.onChange(e.target.value as T /* HACK! but will always be T*/)}>
+      <select name={this.props.uniqueName} value={this.props.value} disabled={this.props.disabled} onChange={e => this.props.onChange(e.target.value as T /* HACK! but will always be T*/)}>
         {this.props.groups
           ? this.props.groups.map(group => <optgroup key={group.name} label={group.name}>{group.options.map(option)}</optgroup>)
           : this.props.options.map(option)}
