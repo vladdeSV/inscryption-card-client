@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import FrontCardGenerator from './modals/cardGenerator';
-import BackCardGenerator from './modals/backCardGenerator';
+import FrontCardGenerator from './modals/generators/front';
+import BackCardGenerator from './modals/generators/back';
 import { SlideModal } from './modals/slide';
 
 class App extends React.Component {

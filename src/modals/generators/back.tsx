@@ -1,6 +1,6 @@
 import React from 'react';
-import CardGeneratorMeta, { Meta } from '../components/meta/cardGeneratorMeta';
-import CardImage from '../components/back/cardImage'
+import CardGeneratorMeta, { Meta } from '../../components/meta/cardGeneratorMeta';
+import CardImage from '../../components/back/cardImage'
 
 export default class CardGenerator extends React.Component<{}, { errorCategory?: string, meta: Omit<Meta, 'locale'>, type: 'common' }> {
 
