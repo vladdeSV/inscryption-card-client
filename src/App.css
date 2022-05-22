@@ -430,6 +430,11 @@ button[disabled] {
   cursor: default;
 }
 
+article.credits {
+  padding: 1em;
+  box-sizing: border-box;
+}
+
 @media (max-width: 1000px) {
   .app {
     margin-top: 0;

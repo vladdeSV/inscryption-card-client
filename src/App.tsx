@@ -3,6 +3,7 @@ import './App.css';
 import FrontCardGenerator from './modals/generators/front';
 import BackCardGenerator from './modals/generators/back';
 import SpecialCardGenerator from './modals/generators/special';
+import Credits from './modals/credits';
 import { SlideModal } from './modals/slide';
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
           <FrontCardGenerator />
           <BackCardGenerator />
           <SpecialCardGenerator />
+          <Credits />
         </SlideModal>
       </main>
     );
