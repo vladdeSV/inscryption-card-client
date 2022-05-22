@@ -6,6 +6,7 @@ import GenerateSpinner from "./generateButton";
 type Props = {
   meta: Omit<Meta, 'locale'>,
   semiUrl: string,
+  enabled?: boolean,
   setErrorCategory: (category?: string) => void,
 }
 type State = {
@@ -42,7 +43,7 @@ export default class SpecialCardImage extends React.Component<Props, State> {
       if (this.state.error) {
         buttonClassNames.push('error', this.state.error.type)
       }
-      return <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching} onClick={() => this.updateCardImage(this.props.meta)}>Generate <GenerateSpinner /></button>
+      return <button className={filterClassNames(buttonClassNames)} disabled={this.state.fetching || !(this.props.enabled ?? true)} onClick={() => this.updateCardImage(this.props.meta)}>Generate <GenerateSpinner /></button>
     }
 
     const downloadButton = () => {

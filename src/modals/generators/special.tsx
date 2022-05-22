@@ -132,8 +132,7 @@ export default class SpecialCardGenerator extends React.Component<{}, State> {
             value={this.state.pixelProfilgate}
             options={
               [
-                { value: 'leshy', label: 'Leshy' },
-                { value: 'angler', label: 'Angler' },
+                { value: 'none', label: 'N/A' },
               ]
             }
           />
@@ -208,7 +207,7 @@ export default class SpecialCardGenerator extends React.Component<{}, State> {
     return (
       <article>
         <section className='card-display'>
-          <CardImage semiUrl={endpoint()} meta={this.state.meta} setErrorCategory={category => this.setState({ errorCategory: category }, () => {
+          <CardImage enabled={this.state.meta.act !== 'pixelprofilgate'} semiUrl={endpoint()} meta={this.state.meta} setErrorCategory={category => this.setState({ errorCategory: category }, () => {
             if (!category) {
               return
             }
