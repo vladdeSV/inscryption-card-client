@@ -18,8 +18,8 @@ export default class SpecialCardGenerator extends React.Component<{}, State> {
     this.state = {
       errorCategory: undefined,
       leshy: 'common',
-      gbc: 'common',
-      pixelProfilgate: 'common',
+      gbc: 'angler',
+      pixelProfilgate: 'leshy',
       meta: {
         act: 'leshy',
         border: false,
