@@ -117,7 +117,7 @@ export default class SpecialCardGenerator extends React.Component<{}, State> {
                   { value: 'prospector', label: 'prospector' },
                   { value: 'royal', label: 'royal' },
                   { value: 'sawyer', label: 'sawyer' },
-                  { value: 'smelter', label: 'smelter' },
+                  { value: 'melter', label: 'melter' },
                   { value: 'trapper', label: 'trapper' },
                 ]
               }
@@ -196,7 +196,7 @@ export default class SpecialCardGenerator extends React.Component<{}, State> {
         // eslint-disable-next-line no-fallthrough
         case 'gbc': {
           // only npc are available as special cards
-          return `gbc/npc/${this.state.gbc}`
+          return `gbc/npcs/${this.state.gbc}`
         }
         case 'pixelprofilgate': {
           // only special cards are available as cards
