@@ -172,12 +172,15 @@ select {
 nav.foo {
   display: flex;
   gap: 0.4em;
+}
+
+.nav-bg {
   padding: 0.2em;
   border-radius: 0.5em;
   background-color: #fff1;
 }
 
-nav.foo>button {
+nav.foo button {
   cursor: pointer;
   font-size: 0.9em;
   border: none;
@@ -187,12 +190,8 @@ nav.foo>button {
   padding: 0.2em 0.4em;
 }
 
-nav.foo>button:hover {
+nav.foo button:hover, nav.foo button.selected {
   background-color: #fff2;
-}
-
-nav.foo>button.selected {
-  background-color: #ffffff25;
 }
 
 .button-menu {

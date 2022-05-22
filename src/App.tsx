@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <main className='app'>
         <h1>Inscryption card generator</h1>
-        <SlideModal options={['Frontside', 'Backside', 'Special']}>
+        <SlideModal options={[['Frontside', 'Backside', 'Special'], ['Credits']]}>
           <FrontCardGenerator />
           <BackCardGenerator />
           <SpecialCardGenerator />
