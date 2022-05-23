@@ -435,7 +435,7 @@ button[disabled] {
 }
 
 article.credits {
-  padding: 1em;
+  padding: 1em 1.5em;
   box-sizing: border-box;
 }
 
