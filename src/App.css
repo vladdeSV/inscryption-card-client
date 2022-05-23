@@ -439,6 +439,23 @@ article.credits {
   box-sizing: border-box;
 }
 
+#credits {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.socials {
+  display: flex;
+  gap: 44px;
+  margin: 0;
+}
+
+.socials svg {
+  fill: #fff;
+  height: 30px;
+}
+
 @media (max-width: 1000px) {
   .app {
     margin-top: 0;
