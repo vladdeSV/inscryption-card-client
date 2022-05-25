@@ -24,7 +24,7 @@ class SlideModal extends React.Component<Props, State> {
       <>
         <style>
           {`.generator>article { transform: translate(${-this.state.selectedIndex * 100}%); }`}
-          {this.state.selectedIndex !== 0 ? `.generator { border-radius: 2em }` : undefined}
+          {this.state.selectedIndex !== 0 ? `.generator { border-radius: 2em; transition-delay: 0s }` : undefined}
         </style>
         <nav className='foo'>
           {this.props.options.map((options) => (
