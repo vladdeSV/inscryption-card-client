@@ -1,5 +1,4 @@
 import React from "react";
-import { blobTo64 } from "../helpers";
 
 type Button = {
   label: string,
