@@ -15,3 +15,10 @@ export async function blobTo64(blob: Blob) {
   });
   return reader.result as string
 }
+
+export function triggerDownload(data: string, filename: string) {
+  const a = document.createElement('a');
+  a.href = data;
+  a.download = filename;
+  a.click();
+}
