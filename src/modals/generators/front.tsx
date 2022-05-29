@@ -22,6 +22,60 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
   }
 
   render() {
+
+    const buttons: {
+      label: string;
+      enabled?: boolean;
+      onClick: () => Promise<void>;
+    }[] = [{
+      label: 'Download',
+      enabled: this.state.data !== undefined,
+      onClick: async () => {
+        if (!this.state.data) {
+          return
+        }
+        const creatureName = `${this.state.card.name ? this.state.card.name.replaceAll(/\W/g, '-') : 'creature'}`
+        triggerDownload(this.state.data, creatureName + '.png')
+      }
+    },]
+
+    if (window.location.href.includes('jldr')) {
+      buttons.push({
+        label: 'In-game export',
+        onClick: async () => {
+          const { card } = this.state
+
+          const endpoint = process.env.REACT_APP_API_ENDPOINT
+          const opts = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(card),
+          }
+
+          const url = `${endpoint}/api/jldr`
+
+          const response = await fetch(url, opts)
+          if (!response.ok) {
+            const errorResponse = await response.json()
+            const category = errorResponse?.category
+            if (typeof category === 'string') {
+              this.setState({ errorCategory: category }, () => {
+                const element = document.querySelector(`.menu.error.${category}`);
+                element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              })
+            }
+            return
+          }
+
+          const blob = await response.blob()
+          const data = await blobTo64(blob)
+
+          const creatureName = `${card.name ? card.name.replaceAll(/\W/g, '-') : 'creature'}`
+          triggerDownload(data, creatureName + '.jldr2.zip')
+        }
+      })
+    }
+
     return (
       <article>
         <DownloadImagePanel
@@ -64,53 +118,7 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
 
             return data
           }}
-          buttons={[
-            {
-              label: 'Download',
-              enabled: this.state.data !== undefined,
-              onClick: async () => {
-                if (!this.state.data) {
-                  return
-                }
-                const creatureName = `${this.state.card.name ? this.state.card.name.replaceAll(/\W/g, '-') : 'creature'}`
-                triggerDownload(this.state.data, creatureName + '.png')
-              }
-            },
-            {
-              label: 'In-game export',
-              onClick: async () => {
-                const { card } = this.state
-
-                const endpoint = process.env.REACT_APP_API_ENDPOINT
-                const opts = {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(card),
-                }
-
-                const url = `${endpoint}/api/jldr`
-
-                const response = await fetch(url, opts)
-                if (!response.ok) {
-                  const errorResponse = await response.json()
-                  const category = errorResponse?.category
-                  if (typeof category === 'string') {
-                    this.setState({ errorCategory: category }, () => {
-                      const element = document.querySelector(`.menu.error.${category}`);
-                      element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    })
-                  }
-                  return
-                }
-
-                const blob = await response.blob()
-                const data = await blobTo64(blob)
-
-                const creatureName = `${card.name ? card.name.replaceAll(/\W/g, '-') : 'creature'}`
-                triggerDownload(data, creatureName + '.jldr2.zip')
-              }
-            },
-          ]}
+          buttons={buttons}
         />
         <section className='card-options'>
           <CardGeneratorOptions onCardUpdate={card => this.setState({ card })} errorCategory={this.state.errorCategory} />
