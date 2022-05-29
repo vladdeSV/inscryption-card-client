@@ -91,7 +91,8 @@ select {
   font-weight: normal;
 }
 
-.disabled {
+.disabled,
+:disabled {
   opacity: 0.5;
 }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { filterClassNames } from "../helpers";
 
 type Button = {
   label: string,
@@ -29,13 +30,45 @@ export class DownloadImagePanel extends React.Component<Props, State> {
       <section className="card-display">
         {image}
         <div className="button-menu">
-          <button className='generate' onClick={async () => {
+          <MenuButton label='Generate' onClick={async () => {
             const data = await this.props.fetchImage()
             this.setState({ data })
-          }}>Generate <span className='generate'>+</span></button>
-          {buttons?.map(button => <button key={button.label.toLocaleLowerCase()} disabled={!(button.enabled ?? true)} onClick={button.onClick}>{button.label}</button>)}
+          }} />
+          {buttons?.map(button => <MenuButton label={button.label} enabled={button.enabled} key={button.label} onClick={button.onClick} />)}
         </div>
       </section>
     );
+  }
+}
+
+class MenuButton extends React.Component<Button, { loading: boolean }> {
+  constructor(props: Button) {
+    super(props);
+    this.state = {
+      loading: false,
+    }
+  }
+
+  render() {
+    const buttonClassNames = []
+
+    if (this.state.loading) {
+      buttonClassNames.push('fetching')
+    }
+
+    return (
+      <button
+        className={filterClassNames(buttonClassNames)}
+        key={this.props.label.toLocaleLowerCase()}
+        disabled={!(this.props.enabled ?? true) || this.state.loading}
+        onClick={() => {
+          this.setState({ loading: true }, async () => {
+            await this.props.onClick()
+            this.setState({ loading: false })
+          })
+
+        }}>{this.props.label}
+      </button>
+    )
   }
 }
