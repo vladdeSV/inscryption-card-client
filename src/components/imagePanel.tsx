@@ -4,10 +4,11 @@ import { blobTo64 } from "../helpers";
 type Button = {
   label: string,
   onClick: () => Promise<void>,
+  enabled?: boolean,
 }
 
 type Props = {
-  fetchImage: () => Promise<Blob | undefined>,
+  fetchImage: () => Promise<string | undefined>,
   buttons?: Button[]
 }
 type State = {
@@ -30,15 +31,10 @@ export class DownloadImagePanel extends React.Component<Props, State> {
         {image}
         <div className="button-menu">
           <button className='generate' onClick={async () => {
-            const blob = await this.props.fetchImage()
-            if (!blob) {
-              return
-            }
-
-            const data = await blobTo64(blob)
+            const data = await this.props.fetchImage()
             this.setState({ data })
           }}>Generate <span className='generate'>+</span></button>
-          {buttons?.map(button => <button key={button.label.toLocaleLowerCase()} onClick={() => button.onClick()}>{button.label}</button>)}
+          {buttons?.map(button => <button key={button.label.toLocaleLowerCase()} disabled={!(button.enabled ?? true)} onClick={button.onClick}>{button.label}</button>)}
         </div>
       </section>
     );

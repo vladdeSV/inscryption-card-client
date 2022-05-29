@@ -1,15 +1,17 @@
 import React from 'react';
 import CardGeneratorMeta, { Meta } from '../../components/meta/cardGeneratorMeta';
 import CardGeneratorOptions, { Card, templateCard } from '../../components/front/options';
-import CardImage from '../../components/front/cardImage'
+import { DownloadImagePanel } from '../../components/imagePanel';
+import { blobTo64, triggerDownload } from '../../helpers';
 
-export default class CardGenerator extends React.Component<{}, { errorCategory?: string, card: Card, meta: Meta }> {
+export default class CardGenerator extends React.Component<{}, { errorCategory?: string, card: Card, meta: Meta, data: string | undefined }> {
 
   constructor(props: {}) {
     super(props)
     this.state = {
       errorCategory: undefined,
       card: templateCard,
+      data: undefined,
       meta: {
         act: 'leshy',
         border: false,
@@ -22,16 +24,94 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
   render() {
     return (
       <article>
-        <section className='card-display'>
-          <CardImage card={this.state.card} meta={this.state.meta} setErrorCategory={category => this.setState({ errorCategory: category }, () => {
-            if (!category) {
+        <DownloadImagePanel
+          fetchImage={async () => {
+            const { card, meta } = this.state
+
+            const parameters = [
+              meta.border ? 'border' : undefined,
+              meta.scanline ? 'scanline' : undefined,
+              meta.locale ? `locale=${meta.locale}` : undefined,
+            ].filter(x => x)
+
+            // if host exists in env
+            const endpoint = process.env.REACT_APP_API_ENDPOINT
+            const opts = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(card),
+            }
+
+            const url = `${endpoint}/api/card/${meta.act}/front${parameters.length ? ('?' + parameters.join('&')) : ''}`
+
+            const response = await fetch(url, opts)
+            if (!response.ok) {
+              const errorResponse = await response.json()
+              const category = errorResponse?.category
+              if (typeof category === 'string') {
+                this.setState({ errorCategory: category }, () => {
+                  const element = document.querySelector(`.menu.error.${category}`);
+                  element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                })
+              }
               return
             }
 
-            const element = document.querySelector(`.menu.error.${category}`);
-            element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          })} />
-        </section>
+            const blob = await response.blob()
+            const data = await blobTo64(blob)
+
+            this.setState({ data })
+
+            return data
+          }}
+          buttons={[
+            {
+              label: 'Download',
+              enabled: this.state.data !== undefined,
+              onClick: async () => {
+                if (!this.state.data) {
+                  return
+                }
+                const creatureName = `${this.state.card.name ? this.state.card.name.replaceAll(/\W/g, '-') : 'creature'}`
+                triggerDownload(this.state.data, creatureName + '.png')
+              }
+            },
+            {
+              label: 'In-game export',
+              onClick: async () => {
+                const { card } = this.state
+
+                const endpoint = process.env.REACT_APP_API_ENDPOINT
+                const opts = {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(card),
+                }
+
+                const url = `${endpoint}/api/jldr`
+
+                const response = await fetch(url, opts)
+                if (!response.ok) {
+                  const errorResponse = await response.json()
+                  const category = errorResponse?.category
+                  if (typeof category === 'string') {
+                    this.setState({ errorCategory: category }, () => {
+                      const element = document.querySelector(`.menu.error.${category}`);
+                      element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    })
+                  }
+                  return
+                }
+
+                const blob = await response.blob()
+                const data = await blobTo64(blob)
+
+                const creatureName = `${card.name ? card.name.replaceAll(/\W/g, '-') : 'creature'}`
+                triggerDownload(data, creatureName + '.jldr2.zip')
+              }
+            },
+          ]}
+        />
         <section className='card-options'>
           <CardGeneratorOptions onCardUpdate={card => this.setState({ card })} errorCategory={this.state.errorCategory} />
           <hr />
@@ -41,4 +121,3 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
     );
   }
 }
-
