@@ -88,7 +88,6 @@ export default class CardGenerator extends React.Component<{}, { errorCategory?:
               meta.locale ? `locale=${meta.locale}` : undefined,
             ].filter(x => x)
 
-            // if host exists in env
             const endpoint = process.env.REACT_APP_API_ENDPOINT
             const opts = {
               method: 'POST',
