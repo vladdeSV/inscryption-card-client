@@ -16,6 +16,7 @@ export default class Credits extends React.Component {
                         <p className='title'>Credits</p>
                         <p>Original art from <a href="https://www.inscryption.com/"><i>Inscryption</i></a> by Daniel Mullins, redistrubuted with permission</p>
                         <p>Additional art courtesy of <a href="https://twitter.com/PixelProfligate">Pixel Profilgate</a></p>
+                        <p><a href="https://inscryption.thunderstore.io/package/MADH95Mods/JSONCardLoader/">JSONLoader</a>, used for importing games into game, maintained by MADH95</p>
                     </div>
                     <div>
                         <p>Generator made by Vladimirs Nordholm</p>
