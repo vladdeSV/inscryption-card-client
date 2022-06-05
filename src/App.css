@@ -464,6 +464,23 @@ article.credits {
   height: 30px;
 }
 
+label.radio {
+  display: flex;
+  flex-flow: row;
+}
+
+label.radio>.content {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  gap: 0.2em;
+}
+
+label.radio>.content>* {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 @media (max-width: 1000px) {
   .app {
     margin-top: 0;
