@@ -12,8 +12,11 @@ type State = {
   selected: 'backside' | 'special'
 
   leshyBackside: 'common' | 'submerged' | 'deathcard' | 'squirrel' | 'bee'
+  leshySpecial: string
   gbcBackside: 'common' | 'submerged'
+  gbcSpecial: 'angler' | 'bluewizard' | 'briar' | 'dredger' | 'dummy' | 'greenwizard' | 'inspector' | 'orangewizard' | 'prospector' | 'royal' | 'sawyer' | 'melter' | 'trapper'
   pixelProfilgateBackside: 'common'
+  pixelProfilgateSpecial: 'angler' | 'goobert' | 'leshy' | 'prospector' | 'trapper' | 'lonely'
 }
 export default class OtherCardGenerator extends React.Component<{}, State> {
 
@@ -23,8 +26,11 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
       errorCategory: undefined,
       selected: 'backside',
       leshyBackside: 'common',
+      leshySpecial: 'fool',
       gbcBackside: 'common',
+      gbcSpecial: 'angler',
       pixelProfilgateBackside: 'common',
+      pixelProfilgateSpecial: 'leshy',
       meta: {
         act: 'leshy',
         border: false,
@@ -55,7 +61,69 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
                 ]}
               />
             },
-            { id: 'special', label: 'Special' },
+            {
+              id: 'special',
+              label: 'Special',
+              content: <SelectOptions
+                uniqueName='type'
+                onChange={type => this.setState({ leshySpecial: type })}
+                value={this.state.leshySpecial}
+                groups={[
+                  {
+                    name: 'Tarots',
+                    options: [
+                      { value: 'fool', label: 'Fool (0)' },
+                      { value: 'empress', label: 'Empress (III)' },
+                      { value: 'death', label: 'Death (XIII)' },
+                      { value: 'devil', label: 'Devil (XV)' },
+                      { value: 'tower', label: 'Tower (XVI)' },
+                    ]
+                  },
+                  {
+                    name: 'Boons',
+                    options: [
+                      { value: 'doubledraw', label: 'doubledraw' },
+                      { value: 'singlestartingbone', label: 'singlestartingbone' },
+                      { value: 'startingbones', label: 'startingbones' },
+                      { value: 'startinggoat', label: 'startinggoat' },
+                      { value: 'startingtrees', label: 'startingtrees' },
+                      { value: 'tutordraw', label: 'tutordraw' },
+                    ]
+                  },
+                  {
+                    name: 'Rewards',
+                    options: [
+                      { value: '1blood', label: '1 Blood' },
+                      { value: '2blood', label: '2 Blood' },
+                      { value: '3blood', label: '3 Blood' },
+                      { value: 'bones', label: 'Bones' },
+                      { value: 'bird', label: 'Bird' },
+                      { value: 'canine', label: 'Canine' },
+                      { value: 'hooved', label: 'Hooved' },
+                      { value: 'insect', label: 'Insect' },
+                      { value: 'reptile', label: 'Reptile' },
+                    ]
+                  },
+                  {
+                    name: 'Trials',
+                    options: [
+                      { value: 'abilities', label: 'Abilities' },
+                      { value: 'blood', label: 'Blood' },
+                      { value: 'bones_trial', label: 'Bones' },
+                      { value: 'flying', label: 'Flying' },
+                      { value: 'pelts', label: 'Pelts' },
+                      { value: 'power', label: 'Power' },
+                      { value: 'rare', label: 'Rare' },
+                      { value: 'ring', label: 'Ring' },
+                      { value: 'strafe', label: 'Strafe' },
+                      { value: 'submerge', label: 'Submerge' },
+                      { value: 'toughness', label: 'Toughness' },
+                      { value: 'tribes', label: 'Tribes' },
+                    ]
+                  }
+                ]}
+              />,
+            },
           ]} />
         }
         case 'gbc': {
@@ -73,7 +141,35 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
                 ]}
               />
             },
-            { id: 'special', label: 'Special' },
+            {
+              id: 'special',
+              label: 'Special',
+              content: <SelectOptions
+                uniqueName='type'
+                onChange={type => this.setState({ gbcSpecial: type })}
+                value={this.state.gbcSpecial}
+                groups={[
+                  {
+                    name: 'NPCs', options: [
+                      // angler, bluewizard, briar, dredger, dummy, greenwizard, inspector, orangewizard, prospector, royal, sawyer, smelter, trapper
+                      { value: 'angler', label: 'angler' },
+                      { value: 'bluewizard', label: 'blue wizard' },
+                      { value: 'briar', label: 'briar' },
+                      { value: 'dredger', label: 'dredger' },
+                      { value: 'dummy', label: 'dummy' },
+                      { value: 'greenwizard', label: 'green wizard' },
+                      { value: 'inspector', label: 'inspector' },
+                      { value: 'orangewizard', label: 'orange wizard' },
+                      { value: 'prospector', label: 'prospector' },
+                      { value: 'royal', label: 'royal' },
+                      { value: 'sawyer', label: 'sawyer' },
+                      { value: 'melter', label: 'melter' },
+                      { value: 'trapper', label: 'trapper' },
+                    ]
+                  }
+                ]}
+              />,
+            },
           ]} />
         }
         case 'pixelprofilgate': {
@@ -86,13 +182,19 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
               id: 'special',
               label: 'Special',
               content: <SelectOptions
-                uniqueName='kind-ppg'
-                onChange={kind => this.setState({ pixelProfilgateBackside: kind })}
-                value={this.state.pixelProfilgateBackside}
+                uniqueName='type'
+                onChange={type => this.setState({ pixelProfilgateSpecial: type })}
+                value={this.state.pixelProfilgateSpecial}
                 options={
                   [
-                    { value: 'common', label: 'Default' },
-                  ]}
+                    { value: 'angler', label: 'Angler' },
+                    { value: 'goobert', label: 'Goobert' },
+                    { value: 'leshy', label: 'Leshy' },
+                    { value: 'prospector', label: 'Prospector' },
+                    { value: 'trapper', label: 'Trapper' },
+                    { value: 'lonely', label: 'Lonely' },
+                  ]
+                }
               />
             },
           ]} />
@@ -100,11 +202,108 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
       }
     }
 
+    const endpoint = (): string => {
+      if (this.state.selected === 'special') {
+        switch (this.state.meta.act) {
+          case 'leshy': {
+            switch (this.state.leshySpecial) {
+              case 'bones':
+              case '1blood':
+              case '2blood':
+              case '3blood':
+              case 'bird':
+              case 'canine':
+              case 'hooved':
+              case 'insect':
+              case 'reptile': {
+                return `leshy/rewards/${this.state.leshySpecial}`
+              }
+
+              case 'fool':
+              case 'empress':
+              case 'death':
+              case 'devil':
+              case 'tower': {
+                return `leshy/tarots/${this.state.leshySpecial}`
+              }
+
+              case 'abilities':
+              case 'blood':
+              case 'flying':
+              case 'pelts':
+              case 'power':
+              case 'rare':
+              case 'ring':
+              case 'strafe':
+              case 'submerge':
+              case 'toughness':
+              case 'tribes': {
+                return `leshy/trials/${this.state.leshySpecial}`
+              }
+              case 'bones_trial': {
+                return `leshy/trials/bones`
+              }
+
+              case 'doubledraw':
+              case 'singlestartingbone':
+              case 'startingbones':
+              case 'startinggoat':
+              case 'startingtrees':
+              case 'tutordraw': {
+                return `leshy/boons/${this.state.leshySpecial}`
+              }
+            }
+            return ''
+          }
+          // eslint-disable-next-line no-fallthrough
+          case 'gbc': {
+            // only npc are available as special cards
+            return `gbc/npcs/${this.state.gbcSpecial}`
+          }
+          case 'pixelprofilgate': {
+            // only special cards are available as cards
+            return `pixelprofilgate/bosses/${this.state.pixelProfilgateSpecial}`
+          }
+        }
+      }
+
+      if (this.state.selected === 'backside') {
+        switch (this.state.meta.act) {
+          case 'leshy': {
+            switch (this.state.leshyBackside) {
+              case 'common':
+              case 'submerged': {
+                return `leshy/backside/${this.state.leshyBackside}`
+              }
+            }
+            throw 'wtf leshy?'
+
+          }
+          case 'gbc': {
+            switch (this.state.gbcBackside) {
+              case 'common':
+              case 'submerged': {
+                return `gbc/backside/${this.state.gbcBackside}`
+              }
+            }
+            throw 'wtf gbc?'
+          }
+          case 'pixelprofilgate': {
+            return `pixelprofilgate/backside`
+          }
+        }
+      }
+
+      throw 'wtf?'
+    }
+
     return (
       <article>
         <section className='card-display'>
           <DownloadImagePanel
-            fetchImage={async () => { return '' }}
+            fetchImage={async () => {
+              return ''
+            }}
             buttons={[
               {
                 label: 'Test',
