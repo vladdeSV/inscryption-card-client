@@ -4,10 +4,12 @@ import { DownloadImagePanel } from '../../components/imagePanel';
 import Section from '../../components/menuSection';
 import { RadioOptions } from '../../components/radioOptions';
 import SelectOptions from '../../components/selectOptions';
+import { blobTo64 } from '../../helpers';
 
 type State = {
   errorCategory?: string
   meta: Omit<Meta, 'locale'>
+  data?: string,
 
   selected: 'backside' | 'special'
 
@@ -202,7 +204,7 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
       }
     }
 
-    const endpoint = (): string => {
+    const endpoint2 = (): string => {
       if (this.state.selected === 'special') {
         switch (this.state.meta.act) {
           case 'leshy': {
@@ -270,26 +272,13 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
       if (this.state.selected === 'backside') {
         switch (this.state.meta.act) {
           case 'leshy': {
-            switch (this.state.leshyBackside) {
-              case 'common':
-              case 'submerged': {
-                return `leshy/backside/${this.state.leshyBackside}`
-              }
-            }
-            throw 'wtf leshy?'
-
+            return `leshy/backs/${this.state.leshyBackside}`
           }
           case 'gbc': {
-            switch (this.state.gbcBackside) {
-              case 'common':
-              case 'submerged': {
-                return `gbc/backside/${this.state.gbcBackside}`
-              }
-            }
-            throw 'wtf gbc?'
+            return `gbc/backs/${this.state.gbcBackside}`
           }
           case 'pixelprofilgate': {
-            return `pixelprofilgate/backside`
+            return `pixelprofilgate/backs/${this.state.pixelProfilgateBackside}`
           }
         }
       }
@@ -299,22 +288,45 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
 
     return (
       <article>
-        <section className='card-display'>
-          <DownloadImagePanel
-            fetchImage={async () => {
-              return ''
-            }}
-            buttons={[
-              {
-                label: 'Test',
-                enabled: true,
-                onClick: async () => {
-                  return
-                }
-              },
-            ]}
-          />
-        </section>
+        <DownloadImagePanel
+          fetchImage={async () => {
+            const { meta } = this.state
+
+            const parameters = [
+              meta.border ? 'border' : undefined,
+              meta.scanline ? 'scanline' : undefined,
+            ].filter(x => x)
+
+            const endpoint = process.env.REACT_APP_API_ENDPOINT
+            const opts = {
+              method: 'GET',
+            }
+
+            const url = `${endpoint}/api/card/${endpoint2()}${parameters.length ? ('?' + parameters.join('&')) : ''}`
+
+            const response = await fetch(url, opts)
+            if (!response.ok) {
+              const errorResponse = await response.json()
+              const category = errorResponse?.category
+              if (typeof category === 'string') {
+                this.setState({ errorCategory: category }, () => {
+                  const element = document.querySelector(`.menu.error.${category}`);
+                  element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                })
+              }
+              return
+            }
+
+            const blob = await response.blob()
+            const data = await blobTo64(blob)
+
+            this.setState({ data })
+
+            return data
+          }}
+          buttons={[
+          ]}
+        />
         <section className='card-options'>
           <section>
             <Section title='Kind'>{section()}</Section>
