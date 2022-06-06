@@ -41,11 +41,12 @@ export class DownloadImagePanel extends React.Component<Props, State> {
   }
 }
 
-class MenuButton extends React.Component<Button, { loading: boolean }> {
+class MenuButton extends React.Component<Button, { loading: boolean, error: string | undefined }> {
   constructor(props: Button) {
     super(props);
     this.state = {
       loading: false,
+      error: undefined,
     }
   }
 
@@ -56,6 +57,11 @@ class MenuButton extends React.Component<Button, { loading: boolean }> {
       buttonClassNames.push('fetching')
     }
 
+    if (this.state.error) {
+      buttonClassNames.push('error')
+      buttonClassNames.push('network')
+    }
+
     return (
       <button
         className={filterClassNames(buttonClassNames)}
@@ -63,8 +69,16 @@ class MenuButton extends React.Component<Button, { loading: boolean }> {
         disabled={!(this.props.enabled ?? true) || this.state.loading}
         onClick={() => {
           this.setState({ loading: true }, async () => {
-            await this.props.onClick()
-            this.setState({ loading: false })
+            this.props.onClick()
+              .then(() => this.setState({ loading: false }))
+              .catch(() => {
+                this.setState({ error: 'error', loading: false }, () => {
+                  setTimeout(() => {
+                    this.setState({ error: undefined })
+                  }, 5000);
+                });
+              })
+
           })
 
         }}>{this.props.label}
