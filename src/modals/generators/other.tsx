@@ -207,6 +207,7 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
     const endpoint2 = (): string => {
       if (this.state.selected === 'special') {
         switch (this.state.meta.act) {
+          default:
           case 'leshy': {
             switch (this.state.leshySpecial) {
               case 'bones':
@@ -267,10 +268,9 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
             return `pixelprofilgate/bosses/${this.state.pixelProfilgateSpecial}`
           }
         }
-      }
-
-      if (this.state.selected === 'backside') {
+      } else {
         switch (this.state.meta.act) {
+          default:
           case 'leshy': {
             return `leshy/backs/${this.state.leshyBackside}`
           }
@@ -282,8 +282,6 @@ export default class OtherCardGenerator extends React.Component<{}, State> {
           }
         }
       }
-
-      throw 'wtf?'
     }
 
     return (
