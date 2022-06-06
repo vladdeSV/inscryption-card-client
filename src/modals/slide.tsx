@@ -28,7 +28,7 @@ class SlideModal extends React.Component<Props, State> {
         </style>
         <nav className='foo'>
           {this.props.options.map((options) => (
-            <div className="nav-bg">
+            <div key={options.join('-')} className="nav-bg">
               {options.map((option) => {
                 const index = counter
                 counter++
