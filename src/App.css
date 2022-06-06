@@ -481,6 +481,11 @@ label.radio>.content>* {
   margin-right: 0;
 }
 
+article.help {
+  padding: 1.5em;
+  box-sizing: border-box;
+}
+
 @media (max-width: 1000px) {
   .app {
     margin-top: 0;
