@@ -12,7 +12,7 @@ export class Help extends React.Component {
                     <section>
                         <p className='title'>How do I import my card into the game?</p>
                         <p>This requires the mod <a href="https://inscryption.thunderstore.io/package/MADH95Mods/JSONCardLoader/">JSONLoader</a> for Inscryption.</p>
-                        <p>For help with installing the mod and importing the card, see this <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">video</a>.</p>
+                        {/* <p>For help with installing the mod and importing the card, see this <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">video</a>.</p> */}
                     </section>
                     <section>
                         <p className='title'>How do I save images?</p>
