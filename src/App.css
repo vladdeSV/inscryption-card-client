@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color: hsl(213deg, 40%, 19%);
+  background-color: hsl(213deg, 25%, 19%);
   color: #eee;
   font-size: 120%;
 }
@@ -121,7 +121,7 @@ fieldset {
 .generator {
   display: flex;
   flex-flow: row;
-  background-color: hsl(212deg, 30%, 12%);
+  background-color: hsl(212deg, 20%, 12%);
   width: 100%;
   max-width: 1000px;
   height: 600px;
