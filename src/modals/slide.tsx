@@ -27,10 +27,6 @@ class SlideModal extends React.Component<Props, State> {
           {this.state.selectedIndex !== 0 ? `.generator { border-radius: 2em; transition-delay: 0s }` : undefined}
         </style>
 
-        <main className='generator'>
-          {this.props.children}
-        </main>
-
         <nav className='foo'>
           {this.props.options.map((options) => (
             <div key={options.join('-')} className="nav-bg">
@@ -43,6 +39,11 @@ class SlideModal extends React.Component<Props, State> {
             </div>
           ))}
         </nav>
+
+        <main className='generator'>
+          {this.props.children}
+        </main>
+
       </>
     )
   }
