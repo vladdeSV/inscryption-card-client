@@ -4,6 +4,7 @@ import FileUpload from "../../../fileUpload";
 export type CustomPortrait = {
   common?: string,
   gbc?: string,
+  custom?: string,
 }
 type Props = {
   enabled: boolean,
@@ -26,6 +27,7 @@ export default class CustomPortraitSelect extends React.Component<Props, CustomP
         <h3>Custom</h3>
         <FileUpload enabled={this.props.enabled} label={<span>Common portrait <small>(114×94 px)</small></span>} onUpdate={data => this.setState({ common: data }, this.onUpdate)} />
         <FileUpload enabled={this.props.enabled} label={<span>Pixel portrait <small>(41×28 px)</small></span>} onUpdate={data => this.setState({ gbc: data }, this.onUpdate)} />
+        <FileUpload enabled={this.props.enabled} label={<span>Custom <small>(?×? px)</small></span>} onUpdate={data => this.setState({ custom: data }, this.onUpdate)} />
       </>
     )
   }
