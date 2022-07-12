@@ -135,7 +135,7 @@ fieldset {
 .generator {
   display: flex;
   flex-flow: row;
-  background-color: hsl(212deg, 20%, 12%);
+  background-color: #071627;
   width: 100%;
   max-width: 1000px;
   height: 600px;
