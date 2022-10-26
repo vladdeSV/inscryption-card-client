@@ -381,7 +381,7 @@ label.portrait {
   display: flex;
 }
 
-label.portrait>section {
+label.portrait>fieldset {
   flex: 1;
 }
 
