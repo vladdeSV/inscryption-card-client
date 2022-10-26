@@ -110,6 +110,58 @@ export default class CreaturePortraitSelect extends React.Component<Props> {
             <option value='Gravedigger'>Gravedigger</option>
             <option value='Revenant'>Revenant</option>
           </optgroup>
+          <optgroup label='P03'>
+            <option value='AlarmBot'>Alarm Bot</option>
+            <option value='Automaton'>Automaton</option>
+            <option value='Angler_Fish_Bad'>Bad Fish</option>
+            <option value='BatteryBot'>Energy Bot</option>
+            <option value='XformerBatBeast'>S0N1A</option>
+            <option value='XformerBatBot'>*XformerBatBot</option>
+            <option value='XformerGrizzlyBeast'>GR1ZZ</option>
+            <option value='XformerGrizzlyBot'>*XformerGrizzlyBot</option>
+            <option value='BoltHound'>Bolthound</option>
+            <option value='Bombbot'>Explode Bot</option>
+            <option value='LatcherBomb'>Bomb Latcher</option>
+            <option value='LatcherBrittle'>Skel-e-latcher</option>
+            <option value='BustedPrinter'>Busted 3D Printer</option>
+            <option value='CaptiveFile'>Captive File</option>
+            <option value='CellBuff'>Tough Cell</option>
+            <option value='CellGift'>Kind Cell</option>
+            <option value='CellTri'>Splinter Cell</option>
+            <option value='AttackConduit'>Buff Conduit</option>
+            <option value='GemsConduit'>Gems Conduit</option>
+            <option value='NullConduit'>*NullConduit</option>
+            <option value='EmptyVessel'>Empty Vessel</option>
+            <option value='GemExploder'>*GemExploder</option>
+            <option value='GemRipper'>Gembound Ripper</option>
+            <option value='GemShielder'>*GemShielder</option>
+            <option value='GiftBot'>Gift Bot</option>
+            <option value='Angler_Fish_Good'>Good Fish</option>
+            <option value='CloserBot'>Double Gunner</option>
+            <option value='Insectodrone'>Insectodrone</option>
+            <option value='LeapBot'>L33pB0t</option>
+            <option value='Librarian'>Librarian</option>
+            <option value='MineCart'>49er</option>
+            <option value='Angler_Fish_More'>More Fish</option>
+            <option value='MYCOCARD_BASE'>*MYCOCARD_BASE</option>
+            <option value='Ouroboros_Part3'>Ourobot</option>
+            <option value='XformerPorcupineBeast'>QU177</option>
+            <option value='XformerPorcupineBot'>*XformerPorcupineBot</option>
+            <option value='RoboSkeleton'>ExeSkeleton</option>
+            <option value='SentinelBlue'>Goranj's Vessel</option>
+            <option value='SentinelGreen'>Orlu's Vessel</option>
+            <option value='SentinelOrange'>Bleene's Vessel</option>
+            <option value='SentryBot'>Sentry Drone</option>
+            <option value='Shieldbot'>Shieldbot</option>
+            <option value='LatcherShield'>Shield Latcher</option>
+            <option value='Shutterbug'>Shutterbug</option>
+            <option value='Sniper'>Sniper Bot</option>
+            <option value='SwapBot'>Swapbot</option>
+            {/* <option value='Swapbot_Swapped'>*Swapbot Swapped</option> */}
+            <option value='CXformerAdder'>ADD3R</option>
+            <option value='CXformerRaven'>RAV3N</option>
+            <option value='CXformerWolf'>W07F</option>
+          </optgroup>
         </select>
       </>
     )
