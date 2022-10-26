@@ -93,18 +93,18 @@ export default class Portrait extends React.Component<Props, State> {
       onUpdate={creature => this.setState({ creature }, this.onUpdate)}
     />
 
-    const foo = (select: State['selected'], element: JSX.Element) => (
+    const foo = (select: State['selected'], element?: JSX.Element) => (
       <label className='portrait'>
         <input type="radio" name="portrait" checked={this.state.selected === select} onChange={() => this.setState({ selected: select }, this.onUpdate)} />
-        <section>
+        {element ? (<fieldset style={{ display: 'block' }}>
           {element}
-        </section>
+        </fieldset>) : (<h3>None</h3>)}
       </label>
     )
 
     return (
       <>
-        {foo('none', none)}
+        {foo('none')}
         {foo('deathcard', deathcard)}
         {foo('creature', creature)}
         {foo('custom', custom)}
