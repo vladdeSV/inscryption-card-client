@@ -72,12 +72,6 @@ export default class Portrait extends React.Component<Props, State> {
 
   render() {
 
-    const none = (
-      <>
-        <h3>None</h3>
-      </>
-    )
-
     const custom = <CustomPortraitSelect
       enabled={this.state.selected === 'custom'}
       onUpdate={customPortrait => this.setState({ custom: customPortrait }, this.onUpdate)}
