@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.8814adb6.css",
-    "main.js": "/static/js/main.0cef72c2.js",
+    "main.css": "/static/css/main.050b04b0.css",
+    "main.js": "/static/js/main.b46891fc.js",
     "static/media/Marksman.otf": "/static/media/Marksman.126f27ce74122911a3a0.otf",
     "index.html": "/index.html",
-    "main.8814adb6.css.map": "/static/css/main.8814adb6.css.map",
-    "main.0cef72c2.js.map": "/static/js/main.0cef72c2.js.map"
+    "main.050b04b0.css.map": "/static/css/main.050b04b0.css.map",
+    "main.b46891fc.js.map": "/static/js/main.b46891fc.js.map"
   },
   "entrypoints": [
-    "static/css/main.8814adb6.css",
-    "static/js/main.0cef72c2.js"
+    "static/css/main.050b04b0.css",
+    "static/js/main.b46891fc.js"
   ]
 }
