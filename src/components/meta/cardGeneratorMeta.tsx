@@ -18,7 +18,7 @@ export default class CardGeneratorMeta extends React.Component<Props, Meta> {
     this.state = {
       act: 'leshy',
       border: false,
-      scanline: false,
+      scanline: true,
       locale: 'default',
     }
   }
