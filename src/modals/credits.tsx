@@ -30,7 +30,7 @@ export default class Credits extends React.Component {
                         <p className='title'>Supporters</p>
                         <p>Special thanks to the following amazing people for supporting my work on Patreon 🎉 (updated semi-regurarily)</p>
                         <ul>
-                            {['Maj', 'Citywatchers', 'Scott St. Onge', '景子 山田'].map(name => (
+                            {['Maj', 'Scott St. Onge'].map(name => (
                                 <li key={name}>{name}</li>
                             ))}
                             <li><a href="https://www.patreon.com/vladde">You…?</a></li>
