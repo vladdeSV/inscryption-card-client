@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     return (
       <main className='app'>
-        <h1>🎊✨ LeshyIRL 💍 Katy ✨🎉</h1>
+        <h1>Inscryption card generator</h1>
         <SlideModal options={[['Frontside', 'Otherside'], ['Help', 'Credits']]}>
           <FrontCardGenerator />
           <OtherCardGenerator />
